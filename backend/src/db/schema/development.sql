@@ -1,4 +1,4 @@
-INSERT INTO users (ID, FIRSTNAME, LASTNAME, EMAIL, USER_PASSWORD, CITY, VOLUNTEER_HOURS)
+INSERT INTO USERS (ID, FIRSTNAME, LASTNAME, EMAIL, USER_PASSWORD, CITY, VOLUNTEER_HOURS)
 VALUES 
   (1, 'John', 'Smith', 'John.Smith@user.com', "1234", 'Toronto', 34),
   (2, 'Alice', 'Jones', 'Alice.Jones@user.com', "1234", 'Vancouver'),
@@ -11,58 +11,10 @@ VALUES
   (9, 'Phillip', 'Martinez', 'Phillip.Martinez@user.com', "1234", 'Vancouver'),
   (10, 'Brittany', 'Taylor', 'Brit.Tay@user.com', "1234", 'Toronto');
 
-INSERT INTO TOPIC (ID, TITLE, SLUG)
+INSERT INTO EVENTS (ID, EVENT_NAME, EVENT_DETAILS, START_TIME, EVENT_HOURS, EVENT_STATUS, EVENT_ADDRESS, CITY, EVENT_DATE, CREATOR_ID)
 VALUES 
-  (1, 'People', 'people'),
-  (2, 'Nature', 'nature'),
-  (3, 'Travel', 'travel'),
-  (4, 'Animals', 'animals'),
-  (5, 'Fashion', 'fashion');
-
-INSERT INTO PHOTO (ID, FULL_URL, REGULAR_URL, CITY, COUNTRY, USER_ID, TOPIC_ID)
-VALUES 
-  (1, 'Image-1-Full.jpeg', 'Image-1-Regular.jpeg', 'Montreal', 'Canada', 1, 1),
-  (11, 'people-1-full.jpg', 'people-1-regular.jpg', 'Toronto', 'Canada', 1, 1),
-  (12, 'people-2-full.jpg', 'people-2-regular.jpg', 'Vancouver', 'Canada', 2, 1),
-  (13, 'people-3-full.jpg', 'people-3-regular.jpg', 'Calgary', 'Canada', 3, 1),
-  (14, 'people-4-full.jpg', 'people-4-regular.jpg', 'Victoria', 'Canada', 4, 1),
-  (15, 'people-5-full.jpg', 'people-5-regular.jpg', 'Ottawa', 'Canada', 5, 1),
-  (16, 'people-6-full.jpg', 'people-6-regular.jpg', 'Montreal', 'Canada', 6, 1),
-  (17, 'people-7-full.jpg', 'people-7-regular.jpg', 'Toronto', 'Canada', 7, 1),
-  (18, 'people-8-full.jpg', 'people-8-regular.jpg', 'Vancouver', 'Canada', 8, 1),
-  (19, 'people-9-full.jpg', 'people-9-regular.jpg', 'Calgary', 'Canada', 9, 1),
-  (21, 'nature-1-full.jpg', 'nature-1-regular.jpg', 'Toronto', 'Canada', 1, 2),
-  (22, 'nature-2-full.jpg', 'nature-2-regular.jpg', 'Vancouver', 'Canada', 2, 2),
-  (23, 'nature-3-full.jpg', 'nature-3-regular.jpg', 'Calgary', 'Canada', 3, 2),
-  (24, 'nature-4-full.jpg', 'nature-4-regular.jpg', 'Victoria', 'Canada', 4, 2),
-  (25, 'nature-5-full.jpg', 'nature-5-regular.jpg', 'Ottawa', 'Canada', 5, 2),
-  (26, 'nature-6-full.jpg', 'nature-6-regular.jpg', 'Montreal', 'Canada', 6, 2),
-  (27, 'nature-7-full.jpg', 'nature-7-regular.jpg', 'Toronto', 'Canada', 7, 2),
-  (28, 'nature-8-full.jpg', 'nature-8-regular.jpg', 'Vancouver', 'Canada', 8, 2),
-  (29, 'nature-9-full.jpg', 'nature-9-regular.jpg', 'Calgary', 'Canada', 9, 2),
-  (31, 'travel-1-full.jpg', 'travel-1-regular.jpg', 'Toronto', 'Canada', 1, 3),
-  (32, 'travel-2-full.jpg', 'travel-2-regular.jpg', 'Vancouver', 'Canada', 2, 3),
-  (33, 'travel-3-full.jpg', 'travel-3-regular.jpg', 'Calgary', 'Canada', 3, 3),
-  (34, 'travel-4-full.jpg', 'travel-4-regular.jpg', 'Victoria', 'Canada', 4, 3),
-  (35, 'travel-5-full.jpg', 'travel-5-regular.jpg', 'Ottawa', 'Canada', 5, 3),
-  (36, 'travel-6-full.jpg', 'travel-6-regular.jpg', 'Montreal', 'Canada', 6, 3),
-  (37, 'travel-7-full.jpg', 'travel-7-regular.jpg', 'Toronto', 'Canada', 7, 3),
-  (38, 'travel-8-full.jpg', 'travel-8-regular.jpg', 'Vancouver', 'Canada', 8, 3),
-  (41, 'animals-1-full.jpg', 'animals-1-regular.jpg', 'Toronto', 'Canada', 1, 4),
-  (42, 'animals-2-full.jpg', 'animals-2-regular.jpg', 'Vancouver', 'Canada', 2, 4),
-  (43, 'animals-3-full.jpg', 'animals-3-regular.jpg', 'Calgary', 'Canada', 3, 4),
-  (44, 'animals-4-full.jpg', 'animals-4-regular.jpg', 'Victoria', 'Canada', 4, 4),
-  (45, 'animals-5-full.jpg', 'animals-5-regular.jpg', 'Ottawa', 'Canada', 5, 4),
-  (46, 'animals-6-full.jpg', 'animals-6-regular.jpg', 'Montreal', 'Canada', 6, 4),
-  (47, 'animals-7-full.jpg', 'animals-7-regular.jpg', 'Toronto', 'Canada', 7, 4),
-  (48, 'animals-8-full.jpg', 'animals-8-regular.jpg', 'Vancouver', 'Canada', 8, 4),
-  (49, 'animals-9-full.jpg', 'animals-9-regular.jpg', 'Calgary', 'Canada', 9, 4),
-  (51, 'fashion-1-full.jpg', 'fashion-1-regular.jpg', 'Toronto', 'Canada', 1, 5),
-  (52, 'fashion-2-full.jpg', 'fashion-2-regular.jpg', 'Vancouver', 'Canada', 2, 5),
-  (53, 'fashion-3-full.jpg', 'fashion-3-regular.jpg', 'Calgary', 'Canada', 3, 5),
-  (54, 'fashion-4-full.jpg', 'fashion-4-regular.jpg', 'Victoria', 'Canada', 4, 5),
-  (55, 'fashion-5-full.jpg', 'fashion-5-regular.jpg', 'Ottawa', 'Canada', 5, 5),
-  (56, 'fashion-6-full.jpg', 'fashion-6-regular.jpg', 'Montreal', 'Canada', 6, 5),
-  (57, 'fashion-7-full.jpg', 'fashion-7-regular.jpg', 'Toronto', 'Canada', 7, 5),
-  (58, 'fashion-8-full.jpg', 'fashion-8-regular.jpg', 'Vancouver', 'Canada', 8, 5),
-  (59, 'fashion-9-full.jpg', 'fashion-9-regular.jpg', 'Calgary', 'Canada', 9, 5);
+  (1, 'Race Setup', 'We need help setting up water stations for a marathon', '1:00PM', 4, 'INCOMPLETE', '456 status Hall Road', 'Montreal', June 1, 2024, 7),
+  (2, 'Meals on Wheels', 'We need help delivering meals to at risk clients in the community', '10:00AM', 7, 'INCOMPLETE', '5 Union Court Street', 'Vancouver', June 15, 2024,9),
+  (3, 'Ottawa Fair', 'We need people to run the info booth', '9:00AM', 8, 'INCOMPLETE', '123 Order Drive', 'Ottawa', June 11, 2024, 8),
+  (4, 'Annual Petting Zoo', 'We need people to check tickets at the door', '2:00PM', 4, 'INCOMPLETE', '476 Talus Drive', 'Vancouver', June 02, 2024, 2),
+  (5, 'Street Party Fundraiser', 'We require first aid attendants', '10:00AM', 4, 'INCOMPLETE', '1 Main Street', 'Montreal', June 22, 2024, 4);
