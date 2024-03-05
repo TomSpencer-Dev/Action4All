@@ -1,7 +1,7 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
+# Action4All
+The Action4All project is a single page app, using the lighthouse-labs react-photolabs template to intialize the front and backend of the project. It is a volunteer app where users can create events and sign up to volunteer at events. 
 
-# Photolabs
+# Action4All
 
 ## Setup
 
