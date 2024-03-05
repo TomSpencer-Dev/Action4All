@@ -10,7 +10,8 @@ const app = express();
 
 const db = require("./db")
 
-const photos = require("./routes/events");
+const events = require("./routes/events");
+const users = require("./routes/users");
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -35,7 +36,8 @@ module.exports = function application(
   app.use(bodyparser.json());
   app.use(express.static(path.join(__dirname, 'public')));
 
-  // app.use("/api", EVENTS(db));
+  app.use("/api", users(db));
+  app.use("/api", events(db));
 
 
   if (ENV === "development" || ENV === "test") {

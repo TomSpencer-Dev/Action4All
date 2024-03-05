@@ -8,7 +8,7 @@ module.exports = db => {
     const serverUrl = `${protocol}://${host}:${port}`;
 
     db.query(`
-      SELECT * FROM events
+      SELECT * FROM users
     `)
   });
 
