@@ -10,8 +10,7 @@ const app = express();
 
 const db = require("./db")
 
-const photos = require("./routes/photos");
-const topics = require("./routes/topics");
+const photos = require("./routes/events");
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -36,8 +35,8 @@ module.exports = function application(
   app.use(bodyparser.json());
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use("/api", photos(db));
-  app.use("/api", topics(db));
+  // app.use("/api", EVENTS(db));
+
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([
