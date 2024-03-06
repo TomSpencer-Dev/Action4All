@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 module.exports = db => {
+  // GET all events
   router.get("/events", (request, response) => {
     db.query(`
       SELECT 
@@ -17,8 +18,8 @@ module.exports = db => {
             'event_date', event.event_date,
             'creator', json_build_object(
               'id', creator.id,
-              'first_name', creator.firstname,  -- Corrected column name here
-              'last_name', creator.lastname,   -- Corrected column name here
+              'first_name', creator.firstname,
+              'last_name', creator.lastname,
               'email', creator.email
             )
           )
@@ -32,6 +33,126 @@ module.exports = db => {
       console.error("Error fetching events:", error);
       response.status(500).json({ error: "Internal Server Error", details: error.message });
     });
+  });
+
+  router.post("/events", (request, response) => {
+    const {
+      event_name,
+      event_details,
+      start_time,
+      event_hours,
+      event_status,
+      event_address,
+      city,
+      event_date,
+      creator_id,
+    } = request.body;
+  
+    db.query(
+      `
+      INSERT INTO events (
+        event_name,
+        event_details,
+        start_time,
+        event_hours,
+        event_status,
+        event_address,
+        city,
+        event_date,
+        creator_id
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;
+    `,
+      [
+        event_name,
+        event_details,
+        start_time,
+        event_hours,
+        event_status,
+        event_address,
+        city,
+        event_date,
+        creator_id,
+      ]
+    )
+      .then(({ rows }) => {
+        response.json(rows[0]);
+      })
+      .catch((error) => {
+        console.error("Error creating event:", error);
+        response.status(500).json({
+          error: "Internal Server Error",
+          details: error.message,
+        });
+      });
+  });
+  // PUT (update) an existing event
+  router.put("/events/:id", (request, response) => {
+    const eventId = request.params.id;
+    const {
+      event_name,
+      event_details,
+      start_time,
+      event_hours,
+      event_status,
+      event_address,
+      city,
+      event_date,
+    } = request.body;
+
+    db.query(
+      `
+      UPDATE events SET
+        event_name = $1,
+        event_details = $2,
+        start_time = $3,
+        event_hours = $4,
+        event_status = $5,
+        event_address = $6,
+        city = $7,
+        event_date = $8
+      WHERE id = $9 RETURNING *;
+    `,
+      [
+        event_name,
+        event_details,
+        start_time,
+        event_hours,
+        event_status,
+        event_address,
+        city,
+        event_date,
+        eventId,
+      ]
+    )
+      .then(({ rows }) => {
+        if (rows.length === 0) {
+          response.status(404).json({ error: "Event not found" });
+        } else {
+          response.json(rows[0]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating event:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
+  });
+
+  // DELETE an event
+  router.delete("/events/:id", (request, response) => {
+    const eventId = request.params.id;
+
+    db.query(`DELETE FROM events WHERE id = $1 RETURNING *;`, [eventId])
+      .then(({ rows }) => {
+        if (rows.length === 0) {
+          response.status(404).json({ error: "Event not found" });
+        } else {
+          response.json({ message: "Event deleted successfully" });
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting event:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
   });
 
   return router;
