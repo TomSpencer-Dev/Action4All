@@ -5,10 +5,9 @@ import Navigation from 'components/Navigation';
 import Events from 'components/Events';
 
 const HomeRoute = (props) => {
-
   return (
     <div className="home-route">
-      <Navigation />
+      <Navigation setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn} />
       <Events events = {props.events} />
     </div>
   );
