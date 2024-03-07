@@ -10,8 +10,7 @@ const useApplicationData = () => {
 
   const initialState = {
     eventsData: [],
-    loggedIn: {}
-
+    loggedIn: {},
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

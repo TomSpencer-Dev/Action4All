@@ -14,19 +14,19 @@ function Navigation(props) {
   </div>
   <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div className="text-sm lg:flex-grow">
-      <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+      <a href="/" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
         Home
       </a>
-      <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+      <a href="/volunteer" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
         Volunteer
       </a>
-      <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+      <a href="/create" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
         Create Event
       </a>
     </div>
     <div>
       {props.loggedIn.email? props.loggedIn.email: 
-      <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" onClick={() => props.setLoggedIn(1)}>Sign In</a>}
+      <a href="/register" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" onClick={() => props.setLoggedIn(1)}>Register</a>}
     </div>
   </div>
 </nav>
