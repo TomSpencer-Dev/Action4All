@@ -6,7 +6,7 @@ function Events(props) {
     return <Event key={event.id} data={event}/>;
   });
     return (
-      <ul>
+      <ul role="list" className="divide-y divide-gray-100">
         {eventItems}
       </ul>
     );
