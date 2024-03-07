@@ -5,6 +5,8 @@ import Navigation from 'components/Navigation';
 import Events from 'components/Events';
 import Login from 'components/Login'
 import Register from 'components/Register';
+import EventForm from 'components/EventForm';
+
 
 const HomeRoute = (props) => {
   return (
@@ -13,6 +15,7 @@ const HomeRoute = (props) => {
       <Events events = {props.events} />
       <Login/>
       <Register/>
+      <EventForm/>
     </div>
   );
 };
