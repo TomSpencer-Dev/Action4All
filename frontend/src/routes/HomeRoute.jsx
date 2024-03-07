@@ -14,11 +14,11 @@ const isLoggedIn = props.loggedIn.email
     <div>
       {isLoggedIn ? (
         <div className="home-route">
-          <Events />
+          <Events events = {[]}  />
         </div>
       ) : (
         <div className="home-route">
-          <Login />
+          <Login setLoggedIn = {props.setLoggedIn} />
         </div>
       )}
     </div>

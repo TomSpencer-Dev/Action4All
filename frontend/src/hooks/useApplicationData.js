@@ -1,6 +1,5 @@
 import { useReducer, useEffect } from 'react';
 
-
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
   SET_LOGGED_IN: 'SET_LOGGED_IN'
@@ -10,7 +9,7 @@ const useApplicationData = () => {
 
   const initialState = {
     eventsData: [],
-    loggedIn: {},
+    loggedIn: {}
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

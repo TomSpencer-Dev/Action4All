@@ -26,7 +26,7 @@ function Navigation(props) {
     </div>
     <div>
       {props.loggedIn.email? props.loggedIn.email: 
-      <a href="/register" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" onClick={() => props.setLoggedIn(1)}>Register</a>}
+      <a href="/register" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" >Register</a>}
     </div>
   </div>
 </nav>
