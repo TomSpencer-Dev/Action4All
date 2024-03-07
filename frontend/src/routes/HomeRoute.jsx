@@ -14,7 +14,7 @@ const isLoggedIn = props.loggedIn.email
     <div>
       {isLoggedIn ? (
         <div className="home-route">
-          <Events events = {[]}  />
+          <Events events = {props.events}  />
         </div>
       ) : (
         <div className="home-route">
