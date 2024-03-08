@@ -7,6 +7,7 @@ import Navigation from 'components/Navigation';
 import Register from 'components/Register';
 import EventForm from 'components/EventForm';
 import Opportunities from 'components/Opportunities'
+import Calendar from 'components/Calendar';
 
 
 // Note: Rendering a single component to build components in isolation
@@ -18,6 +19,7 @@ const {
     <div className="App">
       <Router>
         <Navigation setLoggedIn={setLoggedIn} loggedIn={state.loggedIn} />
+        <Calendar />
          <Routes>
           <Route path="*" element={<h4>404 Page not Found</h4>} />
           <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} />} />
