@@ -22,7 +22,7 @@ const {
           <Route path="*" element={<h4>404 Page not Found</h4>} />
           <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} />} />
           <Route path="/volunteer" element={state.loggedIn? ( <Navigate replace to={"/"} /> ) : (<Opportunities />)}/>
-          <Route path="/create" element={state.loggedIn? ( <Navigate replace to={"/"} /> ) : ( <EventForm />)} />
+          <Route path="/create" element={<EventForm />} />
           <Route path="/register" element={<Register />} />
         </Routes>
        </Router>
