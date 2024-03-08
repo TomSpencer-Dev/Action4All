@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function Calendar() {
 
-const [isLoggedIn, setIsLoggedIn]=useState(false); 
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
    *  Sign in the user upon button click.
@@ -12,7 +13,7 @@ const [isLoggedIn, setIsLoggedIn]=useState(false);
       if (resp.error !== undefined) {
         throw (resp);
       }
-         setIsLoggedIn(true)
+      setIsLoggedIn(true);
       await listUpcomingEvents();
     };
 
@@ -54,7 +55,8 @@ const [isLoggedIn, setIsLoggedIn]=useState(false);
       (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
       'Events:\n');
     console.log(output);
-    // document.getElementById('content').innerText = output;
+    
+    
   }
 
   function handleSignoutClick() {
@@ -74,8 +76,9 @@ const [isLoggedIn, setIsLoggedIn]=useState(false);
     <div>
       {
         !isLoggedIn
-        ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleAuthClick}>Sign In</button>
-        : <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignoutClick}>Sign out</button>
+          ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleAuthClick}>Sign In</button>
+          : <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignoutClick}>Sign out</button>
+
       }
 
     </div>
