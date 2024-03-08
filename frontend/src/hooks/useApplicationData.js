@@ -2,14 +2,16 @@ import { useReducer, useEffect } from 'react';
 
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
-  SET_LOGGED_IN: 'SET_LOGGED_IN'
+  SET_LOGGED_IN: 'SET_LOGGED_IN',
+  SET_CREATE_EVENT_DATA: 'SET_CREATE_EVENT_DATA'
 };
 
 const useApplicationData = () => {
 
   const initialState = {
     eventsData: [],
-    loggedIn: {}
+    loggedIn: {},
+    newEvent: {}
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -32,6 +34,8 @@ const useApplicationData = () => {
         return { ...state, eventsData: action.payload }; 
       case ACTIONS.SET_LOGGED_IN:
         return {...state, loggedIn: action.payload};
+      case ACTIONS.SET_CREATE_EVENT_DATA:
+        return { ...state, newEvent: action.payload };
     }
   }
 
