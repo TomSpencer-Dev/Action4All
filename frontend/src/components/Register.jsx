@@ -1,6 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+const API_BASE_URL = 'http://localhost:8001/api';
 
 function Register() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    city: '',
+    province: '',
+    postal: '',
+  });
+
+  const handleChange = (e) => {
+    // Update the form data when input values change
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    console.log('Form Data:', formData);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/register`, {
+        //const response = await fetch('http://localhost:8001/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log('Server response:', data);
+
+      // Handle the response as needed by redirecting to a new page upon successful registration
+      if (response.ok) {
+        window.location.href = '/login'; // Redirect to login page
+      } else {
+        // Handle registration failure
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+  };
+
   return (
     <form className="w-full max-w-lg">
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -8,41 +55,77 @@ function Register() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
             First Name
           </label>
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
+          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            id="grid-first-name"
+            type="text"
+            placeholder="Jane"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange} />
           <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
             Last Name
           </label>
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" />
+          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name"
+            type="text"
+            placeholder="Doe"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
         </div>
+
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
             Email
           </label>
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="password" placeholder="user@user.com" />
+          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-email"
+            type="email"
+            placeholder="user@user.com"
+            name="email"
+            value={formData.email}
+            onChange={handleChange} />
           <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
         </div>
+
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
             Password
           </label>
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************" />
+          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-password"
+            type="password"
+            placeholder="******************"
+            name="password"
+            value={formData.password}
+            onChange={handleChange} />
           <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
         </div>
+
       </div>
       <div className="flex flex-wrap -mx-3 mb-2">
         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
             City
           </label>
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Vancouver" />
+          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-city"
+            type="text"
+            placeholder="Vancouver"
+            name="city"
+            value={formData.city}
+            onChange={handleChange} />
         </div>
+
         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
             Province
@@ -59,7 +142,6 @@ function Register() {
               <option>SK</option>
               <option>AB</option>
               <option>NL</option>
-              <option>Ontario</option>
               <option>NT</option>
               <option>YT</option>
               <option>NU</option>
@@ -77,7 +159,9 @@ function Register() {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="button"
+          onClick={handleSubmit}>
           Submit
         </button>
       </div>
