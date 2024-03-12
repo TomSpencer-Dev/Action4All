@@ -38,7 +38,7 @@ function Register() {
 
       // Handle the response as needed by redirecting to a new page upon successful registration
       if (response.ok) {
-        window.location.href = '/login'; // Redirect to login page
+        window.location.href = '/'; // Redirect to login page
       } else {
         // Handle registration failure
         console.error('Registration failed');
