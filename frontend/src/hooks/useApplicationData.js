@@ -20,11 +20,7 @@ const useApplicationData = () => {
       .then(data => dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data }));
   }, []);
 
-  // useEffect(() => {
-  //   fetch('/api/users')
-  //     .then(res => res.json())
-  //     .then(data => dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data }));
-  // }, []);
+ 
 
   function reducer(state, action) {
     switch (action.type) {
@@ -39,8 +35,11 @@ const useApplicationData = () => {
 
 
 const setLoggedIn = function(email, password) {
- console.log(email, password)
-  fetch(`/api/users-by-email?email=${encodeURIComponent(email)}`)
+
+
+ const encodedEmail = encodeURIComponent(email);
+
+  fetch(`/api/users-by-email?email=${encodedEmail}`)
     .then(res => res.json())
     .then(data => {
       console.log("User data from server:", data);
