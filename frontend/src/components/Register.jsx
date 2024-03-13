@@ -55,17 +55,7 @@ function Register() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
             First Name
           </label>
-<<<<<<< HEAD
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Jane"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange} />
-=======
           <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-event_name" type="text" placeholder="Street Cleanup" />
->>>>>>> feature/login
           <p className="text-red-500 text-xs italic">Please fill out this field.</p>
 
         </div>
@@ -73,16 +63,6 @@ function Register() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
             Last Name
           </label>
-<<<<<<< HEAD
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
-            type="text"
-            placeholder="Doe"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-=======
           <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-event_date" type="text" placeholder="Jan 25, 2004" />
         </div>
       </div>
@@ -99,7 +79,6 @@ function Register() {
             Password
           </label>
           <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-event_length" type="text" placeholder="5 hours" />
->>>>>>> feature/login
         </div>
 
       </div>
@@ -108,20 +87,9 @@ function Register() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-event_details">
             City
           </label>
-<<<<<<< HEAD
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-email"
-            type="email"
-            placeholder="user@user.com"
-            name="email"
-            value={formData.email}
-            onChange={handleChange} />
-          <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
-=======
           {/* <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="We are looking for someone to help pick up trash..." /> */}
           <textarea id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="We need help picking up garbage..."></textarea>
           <p className="text-gray-600 text-xs italic">Make it as long as you would like</p>
->>>>>>> feature/login
         </div>
 
       </div>
@@ -130,17 +98,7 @@ function Register() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-address">
             Velounteer
           </label>
-<<<<<<< HEAD
-          <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-password"
-            type="password"
-            placeholder="******************"
-            name="password"
-            value={formData.password}
-            onChange={handleChange} />
-=======
           <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="24 Wall Street" />
->>>>>>> feature/login
           <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
         </div>
 
