@@ -39,8 +39,11 @@ const useApplicationData = () => {
 
 
 const setLoggedIn = function(email, password) {
- console.log(email, password)
-  fetch(`/api/users-by-email?email=${encodeURIComponent(email)}`)
+
+
+ const encodedEmail = encodeURIComponent(email);
+
+  fetch(`/api/users-by-email?email=${encodedEmail}`)
     .then(res => res.json())
     .then(data => {
       console.log("User data from server:", data);

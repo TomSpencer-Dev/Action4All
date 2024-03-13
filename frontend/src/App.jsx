@@ -41,7 +41,7 @@ import EventForm from 'components/EventForm';
 import Opportunities from 'components/Opportunities'
 import Cookies from 'js-cookie';
 
-// Note: Rendering a single component to build components in isolation
+
 const App = () => {
 const {
    state, setLoggedIn } = useApplicationData();
