@@ -12,15 +12,15 @@ const HomeRoute = (props) => {
 const isLoggedIn = props.loggedIn.email
   return (
     <div>
-      {isLoggedIn ? (
+      {/* {isLoggedIn ? ( */}
         <div className="home-route">
-          <Events events = {props.events}  />
+          <Events events = {props.events} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} />
         </div>
-      ) : (
+      {/* ) : (
         <div className="home-route">
           <Login setLoggedIn = {props.setLoggedIn} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

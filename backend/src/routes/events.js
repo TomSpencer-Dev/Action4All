@@ -3,6 +3,7 @@ const router = require("express").Router();
 module.exports = db => {
   // GET all events
   router.get("/events", (request, response) => {
+
     db.query(`
       SELECT 
         json_agg(
