@@ -1,17 +1,11 @@
 const router = require("express").Router();
 
 module.exports = db => {
-  // router.get("/events", (request, response) => {
-  //   const protocol = request.protocol;
-  //   const host = request.hostname;
-  //   const port = process.env.PORT || 8001;
-  //   const serverUrl = `${protocol}://${host}:${port}`;
-
-  //   db.query(`
-  //     SELECT * FROM users
-  //   `)
-  // });
+ 
   router.get("/users", (request, response) => {
+      //const user = request.session.user; // Access the user from the session cookie
+      //const user = request.session && request.session.user;
+    //if(user){
     db.query(`
       SELECT 
         id,
@@ -42,8 +36,8 @@ module.exports = db => {
         city,
         volunteer_hours
       FROM users
-      WHERE id = $1;
-    `, [userId]).then(({ rows: user }) => {
+      WHERE email = $1;
+    `, [userEmail]).then(({ rows: user }) => {
       if (user.length === 0) {
         response.status(404).json({ error: "User not found" });
       } else {
