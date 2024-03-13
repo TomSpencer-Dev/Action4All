@@ -5,6 +5,9 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
+//
+//const cookieSession = require("cookie-session"); 
+
 
 const app = express();
 
@@ -34,10 +37,22 @@ module.exports = function application(
   app.use(cors());
   app.use(helmet());
   app.use(bodyparser.json());
+  //cookies
+
+  // app.use(
+  //   cookieSession({
+  //     name: "session",
+  //     keys: ["supersecretKey", "anotherSuperSecretKey", "df1718d9-9064-436d-bf71-f52fc9b7ee48"],
+  //     maxAge: 60 * 60 * 1000, // Cookie will expire in 1 hour
+  //   })
+  // );
+
   app.use(express.static(path.join(__dirname, 'public')));
+  
 
   app.use("/api", users(db));
   app.use("/api", events(db));
+  
 
 
   if (ENV === "development" || ENV === "test") {

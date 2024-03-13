@@ -1,6 +1,7 @@
 import React from 'react';
 
 function EventForm() {
+  
   return (
     <form className="w-full max-w-lg">
       <div className="flex flex-wrap -mx-3 mb-6">

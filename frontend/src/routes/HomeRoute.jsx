@@ -4,12 +4,15 @@ import '../styles/HomeRoute.scss';
 
 import Events from 'components/Events';
 import Login from 'components/Login';
-
+import Cookies from 'js-cookie';
 
 
 const HomeRoute = (props) => {
+ 
+  const isLoggedIn = Cookies.get('isLoggedIn') ;
   
-const isLoggedIn = props.loggedIn.email
+
+
   return (
     <div>
       {isLoggedIn ? (
@@ -18,11 +21,15 @@ const isLoggedIn = props.loggedIn.email
         </div>
       ) : (
         <div className="home-route">
-          <Login setLoggedIn = {props.setLoggedIn} />
+          <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn}/>
+         
+          
+          
         </div>
-      )}
-    </div>
-  );
-};
+  )
+      }   
+     </div>
+  )
+ };
 
 export default HomeRoute;

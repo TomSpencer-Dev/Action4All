@@ -3,6 +3,8 @@ const router = require("express").Router();
 module.exports = db => {
   // GET all events
   router.get("/events", (request, response) => {
+     //const user = request.session.user;
+     //if (user) {
     db.query(`
       SELECT 
         json_agg(
@@ -33,7 +35,12 @@ module.exports = db => {
       console.error("Error fetching events:", error);
       response.status(500).json({ error: "Internal Server Error", details: error.message });
     });
+  //  }else{
+  //    response.status(401).json({ error: "Unauthorized" });
+  //  }
   });
+
+
 
   router.post("/events", (request, response) => {
     const {
