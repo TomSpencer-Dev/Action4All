@@ -12,6 +12,7 @@ module.exports = db => {
             'event_name', event.event_name,
             'event_details', event.event_details,
             'start_time', event.start_time,
+            'end_time', event.end_time,
             'event_hours', event.event_hours,
             'event_status', event.event_status,
             'event_address', event.event_address,
@@ -30,13 +31,13 @@ module.exports = db => {
     `).then(({ rows }) => {
       response.json(rows[0].event_data);
     })
-    .catch((error) => {
-      console.error("Error fetching events:", error);
-      response.status(500).json({ error: "Internal Server Error", details: error.message });
-    });
-  //  }else{
-  //    response.status(401).json({ error: "Unauthorized" });
-  //  }
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
+    //  }else{
+    //    response.status(401).json({ error: "Unauthorized" });
+    //  }
   });
 
 
@@ -46,6 +47,7 @@ module.exports = db => {
       event_name,
       event_details,
       start_time,
+      end_time,
       event_hours,
       event_status,
       event_address,
@@ -53,25 +55,27 @@ module.exports = db => {
       event_date,
       creator_id,
     } = request.body;
-  
+
     db.query(
       `
       INSERT INTO events (
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
         city,
         event_date,
         creator_id
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;
     `,
       [
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
@@ -98,6 +102,7 @@ module.exports = db => {
       event_name,
       event_details,
       start_time,
+      end_time,
       event_hours,
       event_status,
       event_address,
@@ -111,17 +116,19 @@ module.exports = db => {
         event_name = $1,
         event_details = $2,
         start_time = $3,
-        event_hours = $4,
-        event_status = $5,
-        event_address = $6,
-        city = $7,
-        event_date = $8
-      WHERE id = $9 RETURNING *;
+        end_time = $4,
+        event_hours = $5,
+        event_status = $6,
+        event_address = $7,
+        city = $8,
+        event_date = $9
+      WHERE id = $10 RETURNING *;
     `,
       [
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
