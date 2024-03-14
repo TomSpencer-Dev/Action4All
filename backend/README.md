@@ -1,4 +1,4 @@
-# Photolabs API
+# action4All API
 
 ## Setup
 
