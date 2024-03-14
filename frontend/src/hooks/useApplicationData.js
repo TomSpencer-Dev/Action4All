@@ -1,4 +1,7 @@
+import { toHaveStyle } from '@testing-library/jest-dom/matchers';
 import { useReducer, useEffect } from 'react';
+
+
 
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
