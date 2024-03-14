@@ -7,7 +7,6 @@ function Login(props) {
    
    const handleLogin = () => {
      props.setLoggedIn(email, password);
-     console.log("login line 10 : ", props.loggedIn)
    
     if (props.loggedIn) {
       //Set cookies on successful login

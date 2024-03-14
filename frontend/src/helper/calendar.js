@@ -97,7 +97,7 @@ export function handleSignoutClick() {
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
     gapi.client.setToken('');
-    setIsLoggedIn(false);
+
     console.log("User Signed Out");
   }
 }
