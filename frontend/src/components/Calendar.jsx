@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 function Calendar() {
 
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
@@ -15,6 +14,7 @@ function Calendar() {
       }
       setIsLoggedIn(true);
       await listUpcomingEvents();
+      await addEvent();
     };
 
     if (gapi.client.getToken() === null) {
@@ -26,6 +26,48 @@ function Calendar() {
       tokenClient.requestAccessToken({ prompt: '' });
     }
   }
+
+  async function addEvent() {
+    const event = {
+      'summary': 'Google I/O 2015',
+      'location': '800 Howard St., San Francisco, CA 94103',
+      'description': 'A chance to hear more about Google\'s developer products.',
+      'start': {
+        'dateTime': '2015-05-28T09:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'
+      },
+      'end': {
+        'dateTime': '2015-05-28T17:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'
+      },
+      'recurrence': [
+        'RRULE:FREQ=DAILY;COUNT=2'
+      ],
+      'attendees': [
+        { 'email': 'lpage@example.com' },
+        { 'email': 'sbrin@example.com' }
+      ],
+      'reminders': {
+        'useDefault': false,
+        'overrides': [
+          { 'method': 'email', 'minutes': 24 * 60 },
+          { 'method': 'popup', 'minutes': 10 }
+        ]
+      }
+    };
+
+    try {
+      const request = await gapi.client.calendar.events.insert({
+        'calendarId': 'primary',
+        'resource': event
+      });
+      const result = await request.execute();
+      console.log('Event created:', result.htmlLink);
+    } catch (error) {
+      console.error('Error adding event:', error);
+    }
+  }
+
 
   async function listUpcomingEvents() {
     let response;
@@ -55,8 +97,8 @@ function Calendar() {
       (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
       'Events:\n');
     console.log(output);
-    
-    
+
+
   }
 
   function handleSignoutClick() {
@@ -65,12 +107,11 @@ function Calendar() {
       google.accounts.oauth2.revoke(token.access_token);
       gapi.client.setToken('');
       setIsLoggedIn(false);
-      // document.getElementById('content').innerText = '';
-      // document.getElementById('authorize_button').innerText = 'Authorize';
-      // document.getElementById('signout_button').style.visibility = 'hidden';
       console.log("User Signed Out");
     }
   }
+
+
 
   return (
     <div>

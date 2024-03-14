@@ -10,8 +10,6 @@ import Cookies from 'js-cookie';
 const HomeRoute = (props) => {
  
   const isLoggedIn = Cookies.get('isLoggedIn') ;
-  console.log(isLoggedIn);
-
 
   return (
     <>
