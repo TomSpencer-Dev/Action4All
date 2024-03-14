@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/TomSpencer-Dev/action4all/issues"
   },
-  "homepage": "https://github.com/TomSpencer-Dev/action4all#readme"
+  "homepage": "https://github.com/TomSpencer-Dev/action4all#readme",
+  "dependencies": {
+    "js-cookie": "^3.0.5"
+  }
 }

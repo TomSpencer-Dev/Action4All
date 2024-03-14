@@ -10,25 +10,22 @@ import Cookies from 'js-cookie';
 const HomeRoute = (props) => {
  
   const isLoggedIn = Cookies.get('isLoggedIn') ;
-  
+  console.log(isLoggedIn);
 
 
   return (
-    <div>
-      {/* {isLoggedIn ? ( */}
+    <>
+        { isLoggedIn ? 
         <div className="home-route">
           <Events events = {props.events} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} />
         </div>
-      {/* ) : (
+       : 
         <div className="home-route">
           <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn}/>
-         
-          
-          
         </div>
-  )
-      }   
-     </div>
+        
+        }
+     </>
   )
  };
 

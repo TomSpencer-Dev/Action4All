@@ -33,15 +33,6 @@ const useApplicationData = () => {
     }
   }
 
-
-
-
-const setLoggedIn = function(ID) {
-    fetch(`api/users/${ID}`)
-      .then(res => res.json())
-      .then(data => dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data }));
-  };
-
   function addUserToEvent(userId, eventId) {
     fetch('api/eventuser', {
         method: 'POST',
@@ -116,7 +107,6 @@ return {
     setLoggedIn,
     addUserToEvent,
     deleteEventFromUser
-    setLoggedIn,
   };
 }
 

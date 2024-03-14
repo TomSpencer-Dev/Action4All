@@ -1,6 +1,5 @@
 INSERT INTO USERS (FIRSTNAME, LASTNAME, EMAIL, USER_PASSWORD, CITY, VOLUNTEER_HOURS)
 VALUES 
-<<<<<<< HEAD
   ( 'John', 'Smith', 'John.Smith@user.com', '1234', 'Toronto', 34),
   ( 'Alice', 'Jones', 'Alice.Jones@user.com', '1234', 'Vancouver', 45),
   ( 'Sita', 'Dennis', 'Sita.Dennis@user.com', '1234', 'Ottawa', 56),
@@ -11,18 +10,6 @@ VALUES
   ( 'Robert', 'Rodriguez', 'Rob.R@user.com', '1234', 'Ottawa', 22),
   ( 'Phillip', 'Martinez', 'Phillip.Martinez@user.com', '1234', 'Vancouver', 44),
   ( 'Brittany', 'Taylor', 'Brit.Tay@user.com', '1234', 'Toronto', 21);
-=======
-  ('John', 'Smith', 'John.Smith@user.com', '1234', 'Toronto', 34),
-  ('Alice', 'Jones', 'Alice.Jones@user.com', '1234', 'Vancouver', 45),
-  ('Sita', 'Dennis', 'Sita.Dennis@user.com', '1234', 'Ottawa', 56),
-  ('Sasha', 'Berkenstock', 'Sash.Berkenstock@user.com', '1234', 'Montreal', 89),
-  ('Crystal', 'Johnson', 'Crystal.Johnson@user.com', '1234', 'Toronto', 73),
-  ( 'Frederick', 'Williams', 'Fred.Will@user.com', '1234', 'Vancouver', 65),
-  ('Sarah', 'Garcia', 'Sarah.Garcica@user.com', '1234', 'Montreal', 76),
-  ('Robert', 'Rodriguez', 'Rob.R@user.com', '1234', 'Ottawa', 22),
-  ('Phillip', 'Martinez', 'Phillip.Martinez@user.com', '1234', 'Vancouver', 44),
-  ('Brittany', 'Taylor', 'Brit.Tay@user.com', '1234', 'Toronto', 21);
->>>>>>> feature/calendarapi
 
 -- Inserting into EVENTS table
 INSERT INTO EVENTS (EVENT_NAME, EVENT_DETAILS, START_TIME, EVENT_HOURS, EVENT_STATUS, EVENT_ADDRESS, CITY, EVENT_DATE, CREATOR_ID)
