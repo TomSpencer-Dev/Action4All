@@ -15,6 +15,7 @@ const db = require("./db")
 
 const events = require("./routes/events");
 const users = require("./routes/users");
+const eventuser = require("./routes/eventuser");
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -52,7 +53,7 @@ module.exports = function application(
 
   app.use("/api", users(db));
   app.use("/api", events(db));
-  
+  app.use("/api", eventuser(db));
 
 
   if (ENV === "development" || ENV === "test") {
