@@ -3,7 +3,8 @@ const router = require("express").Router();
 module.exports = db => {
   // GET all events
   router.get("/events", (request, response) => {
-
+     //const user = request.session.user;
+     //if (user) {
     db.query(`
       SELECT 
         json_agg(
