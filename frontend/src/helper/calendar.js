@@ -18,17 +18,21 @@ export function handleAuthClick(data) {
 }
 
 export async function addEvent(data) {
-
+  const date = data.data.event_date
+  const startTime = data.data.end_time;
+console.log(startTime);
+  const startDateTime = date + 'T' + startTime
+console.log(startDateTime);
   const event = {
     'summary': data.data.event_name,
     'location': data.data.event_address,
     'description': data.data.event_details,
     'start': {
-      'dateTime': '2024-03-21T09:00:00-07:00',
+      'dateTime': '2024-06-02T14:00:00',
       'timeZone': 'America/Los_Angeles'
     },
     'end': {
-      'dateTime': '2024-03-21T17:00:00-07:00',
+      'dateTime': '2024-03-21T17:00:00',
       'timeZone': 'America/Los_Angeles'
     },
     // 'recurrence': [
