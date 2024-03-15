@@ -1,0 +1,23 @@
+{
+  "name": "action4all",
+  "version": "1.0.0",
+  "description": "The Action4All project is a single page app, using the lighthouse-labs react-photolabs template to intialize the front and backend of the project. It is a volunteer app where users can create events and sign up to volunteer at events.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomSpencer-Dev/action4all.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomSpencer-Dev/action4all/issues"
+  },
+  "homepage": "https://github.com/TomSpencer-Dev/action4all#readme",
+  "dependencies": {
+    "js-cookie": "^3.0.5"
+  }
+}

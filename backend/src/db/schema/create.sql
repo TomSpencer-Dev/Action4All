@@ -28,7 +28,8 @@ CREATE TABLE EVENTS (
 );
 
 CREATE TABLE EVENTUSER(
+  ID SERIAL PRIMARY KEY NOT NULL, 
   user_id INTEGER REFERENCES users(ID),
-  event_id INTEGER REFERENCES events(ID),
-  PRIMARY KEY (user_id, event_id)
+  event_id INTEGER REFERENCES events(ID)
+  
 );
