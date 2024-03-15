@@ -31,13 +31,11 @@ module.exports = db => {
     `).then(({ rows }) => {
       response.json(rows[0].event_data);
     })
-    .catch((error) => {
-      console.error("Error fetching events:", error);
-      response.status(500).json({ error: "Internal Server Error", details: error.message });
-    });
-  //  }else{
-  //    response.status(401).json({ error: "Unauthorized" });
-  //  }
+
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
   });
 
 
@@ -47,6 +45,7 @@ module.exports = db => {
       event_name,
       event_details,
       start_time,
+      end_time,
       event_hours,
       event_status,
       event_address,
@@ -54,15 +53,15 @@ module.exports = db => {
       event_date,
       creator_id,
     } = request.body;
-  
+
     db.query(
       `
       INSERT INTO events (
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
-        event_status,
         event_address,
         city,
         event_date,
@@ -73,12 +72,12 @@ module.exports = db => {
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
-        event_status,
         event_address,
         city,
         event_date,
-        creator_id,
+        1
       ]
     )
       .then(({ rows }) => {
