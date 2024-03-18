@@ -19,7 +19,10 @@ const HomeRoute = (props) => {
         </div>
        : 
         <div className="home-route">
-          <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn}/>
+          <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn } />
+         
+          
+          
         </div>
         
         }
@@ -28,3 +31,11 @@ const HomeRoute = (props) => {
  };
 
 export default HomeRoute;
+
+
+
+
+
+
+
+

@@ -12,15 +12,10 @@ function Events(props) {
       </ul>
     );
   
-//   const eventItems = Array.isArray(props.events)
-//   ? props.events.map((event) => <Event key={event.id} data={event} />)
-//   : null;
 
-// return (
-//   <ul role="list" className="divide-y divide-gray-100">
-//     {eventItems}
-//   </ul>
-// );
 }
 
 export default Events;
+
+
+

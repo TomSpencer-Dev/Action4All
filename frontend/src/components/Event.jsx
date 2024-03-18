@@ -28,7 +28,7 @@ const handleDeleteEventClick = () => {
       <button className="bg-transparent hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>Withdraw</button>
     </div>
     <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p className="text-sm leading-6 text-gray-900">{props.data.start_time} {props.data.event_date}</p>
+      <p className="text-sm leading-6 text-gray-900">{props.data.start_time} - {props.data.end_time} {props.data.event_date}</p>
       <p className="mt-1 text-xs leading-5 text-gray-500">{props.data.event_address} </p>
       <p className="mt-1 text-xs leading-5 text-gray-500">{props.data.city} </p>
     </div>

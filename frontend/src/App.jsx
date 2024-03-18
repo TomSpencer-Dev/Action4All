@@ -1,4 +1,3 @@
-
 import React from 'react';
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
@@ -10,7 +9,6 @@ import EventForm from 'components/EventForm';
 import Opportunities from 'components/Opportunities'
 import Calendar from 'components/Calendar';
 import Cookies from 'js-cookie';
-
 
 const App = () => {
 const {
@@ -30,12 +28,9 @@ const {
           <Route path="/create" element={isLoggedIn?(<EventForm />):( <Navigate replace to={"/"} /> )} />
           <Route path="/register" element={<Register />} />
         </Routes>
-       </Router>
+      </Router>
     </div>
   );
 };
 
 export default App;
-
-
-

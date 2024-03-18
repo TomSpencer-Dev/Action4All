@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const express = require("express");
-const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
 
@@ -32,12 +31,13 @@ function read(file) {
 module.exports = function application(ENV) {
   app.use(cors());
   app.use(helmet());
-  app.use(bodyparser.json());
+  app.use(express.json());
+
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use("/api", users(db));
-  app.use("/api", events(db));
-  app.use("/api", eventuser(db));
+  app.use("/api/users", users(db));
+  app.use("/api/events", events(db));
+  
 
 
   if (ENV === "development" || ENV === "test") {
