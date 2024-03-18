@@ -18,15 +18,13 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/events")
-      .then(res => res.json())
-      .then(data => dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data }));
-
-  }, []);
-
-  useEffect(() => {
     fetchUserData();
   }, []);
+
+  // useEffect(() => {
+  //   const userId = Cookies.get('user_id');
+
+  // }, [state.loggedIn]);
 
 
 
@@ -101,7 +99,12 @@ const useApplicationData = () => {
 
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
-          onLoginSuccess(data); // Call the callback here
+          fetch(`http://localhost:8001/api/events/${data.id}`)
+            .then(res2 => res2.json())
+            .then(data2 => {
+              dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data2 });
+              onLoginSuccess(data); // Call the callback here
+            });
         } else {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
           console.error('Invalid email or password');
