@@ -5,7 +5,7 @@ import icon from '../assets/icon.png';
 import { handleSignoutClick } from 'helper/calendar';
 
 function Navigation(props) {
-
+  const userEmail = props.loggedIn.email
   const user_id = Cookies.get('user_id');
   const isLoggedIn = Cookies.get('isLoggedIn');
 
@@ -43,7 +43,7 @@ function Navigation(props) {
         <div>
           {isLoggedIn ? (
             <div>
-              {user_id}
+              {userEmail}
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
