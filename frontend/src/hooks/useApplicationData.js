@@ -38,12 +38,12 @@ const useApplicationData = () => {
   }
 
   function addUserToEvent(userId, eventId) {
-    fetch('api/eventuser', {
+    fetch(`/api/eventuser/${userId}/${eventId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId, eventId }),
+        }
+
     })
     .then(response => response.json())
     .then(data => {
@@ -54,20 +54,17 @@ const useApplicationData = () => {
         }
     })
     .catch(error => {
-        console.error('Error deleting event from user:', error);
+        console.error('Error adding user to event:', error);
         alert('Failed to add user to event. Please try again.');
     });
 }
 
 function deleteEventFromUser(userId, eventId) {
-
-
-    fetch('api/eventuser/', {
+    fetch(`/api/eventuser/${userId}/${eventId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId, eventId }),
+        }
     })
     .then(response => response.json())
     .then(data => {

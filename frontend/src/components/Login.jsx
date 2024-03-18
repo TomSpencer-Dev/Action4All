@@ -8,7 +8,7 @@ function Login({ setLoggedIn, loggedIn }) {
   const handleLogin = () => {
   
     setLoggedIn(email, password);
-
+console.log(loggedIn)
     if (loggedIn && loggedIn.id) {
 
       Cookies.set('user_id', loggedIn.id);
