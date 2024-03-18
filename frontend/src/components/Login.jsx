@@ -6,7 +6,7 @@ function Login({ setLoggedIn, loggedIn }) {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    //event.preventDefault();
+  
     setLoggedIn(email, password);
 
     if (loggedIn && loggedIn.id) {
