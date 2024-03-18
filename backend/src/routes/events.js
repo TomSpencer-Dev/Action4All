@@ -4,7 +4,9 @@ const router = require("express").Router();
 module.exports = db => {
  // GET all events
   router.get("/", (request, response) => {
+  const userId = 1;
 
+  const query = 
     db.query(`
       SELECT 
         json_agg(
