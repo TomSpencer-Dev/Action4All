@@ -1,9 +1,10 @@
+
 const router = require("express").Router();
 
 module.exports = db => {
-  
-  router.get("/events", (request, response) => {
-    
+ // GET all events
+  router.get("/", (request, response) => {
+
     db.query(`
       SELECT 
         json_agg(
@@ -12,6 +13,7 @@ module.exports = db => {
             'event_name', event.event_name,
             'event_details', event.event_details,
             'start_time', event.start_time,
+            'end_time', event.end_time,
             'event_hours', event.event_hours,
             'event_status', event.event_status,
             'event_address', event.event_address,
@@ -30,20 +32,66 @@ module.exports = db => {
     `).then(({ rows }) => {
       response.json(rows[0].event_data);
     })
-    .catch((error) => {
-      console.error("Error fetching events:", error);
-      response.status(500).json({ error: "Internal Server Error", details: error.message });
-    });
-  
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
+    //  }else{
+    //    response.status(401).json({ error: "Unauthorized" });
+    //  }
   });
 
+  // router.get("/events", (request, response) => {
+  //   const userEmail = request.user.email; // Assuming you have the user's email available in the request
+    
+  //   db.query(`
+  //     SELECT 
+  //       json_agg(
+  //         json_build_object(
+  //           'id', event.id,
+  //           'event_name', event.event_name,
+  //           'event_details', event.event_details,
+  //           'start_time', event.start_time,
+  //           'end_time', event.end_time,
+  //           'event_hours', event.event_hours,
+  //           'event_status', event.event_status,
+  //           'event_address', event.event_address,
+  //           'city', event.city,
+  //           'event_date', event.event_date,
+  //           'creator', json_build_object(
+  //             'id', creator.id,
+  //             'first_name', creator.firstname,
+  //             'last_name', creator.lastname,
+  //             'email', creator.email
+  //           )
+  //         )
+  //       ) as event_data
+  //     FROM events AS event
+  //     JOIN users AS creator ON creator.id = event.creator_id
+  //     LEFT JOIN eventuser ON event.id = eventuser.event_id AND eventuser.user_id = (
+  //       SELECT id FROM users WHERE email = $1
+  //     )
+  //     WHERE event.creator_id != (
+  //       SELECT id FROM users WHERE email = $1
+  //     ) OR eventuser.id IS NULL
+  //     GROUP BY event.id
+  //   `, [userEmail])
+  //   .then(({ rows }) => {
+  //     response.json(rows[0].event_data);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error fetching events:", error);
+  //     response.status(500).json({ error: "Internal Server Error", details: error.message });
+  //   });
+  // });
+  
 
-
-  router.post("/events", (request, response) => {
+  router.post("/", (request, response) => {
     const {
       event_name,
       event_details,
       start_time,
+      end_time,
       event_hours,
       event_status,
       event_address,
@@ -51,25 +99,27 @@ module.exports = db => {
       event_date,
       creator_id,
     } = request.body;
-  
+
     db.query(
       `
       INSERT INTO events (
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
         city,
         event_date,
         creator_id
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;
     `,
       [
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
@@ -90,12 +140,13 @@ module.exports = db => {
       });
   });
   // PUT (update) an existing event
-  router.put("/events/:id", (request, response) => {
+  router.put("/:id", (request, response) => {
     const eventId = request.params.id;
     const {
       event_name,
       event_details,
       start_time,
+      end_time,
       event_hours,
       event_status,
       event_address,
@@ -109,17 +160,19 @@ module.exports = db => {
         event_name = $1,
         event_details = $2,
         start_time = $3,
-        event_hours = $4,
-        event_status = $5,
-        event_address = $6,
-        city = $7,
-        event_date = $8
-      WHERE id = $9 RETURNING *;
+        end_time = $4,
+        event_hours = $5,
+        event_status = $6,
+        event_address = $7,
+        city = $8,
+        event_date = $9
+      WHERE id = $10 RETURNING *;
     `,
       [
         event_name,
         event_details,
         start_time,
+        end_time,
         event_hours,
         event_status,
         event_address,
@@ -161,3 +214,7 @@ module.exports = db => {
 
   return router;
 };
+
+
+
+

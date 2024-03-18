@@ -11,7 +11,7 @@ function MyEvents(props) {
       </div>
     </div>
     <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p className="text-sm leading-6 text-gray-900">{props.data.start_time} {props.data.event_date}</p>
+      <p className="text-sm leading-6 text-gray-900">{props.data.start_time} - {props.data.end_time} {props.data.event_date}</p>
       <p className="mt-1 text-xs leading-5 text-gray-500">{props.data.event_address} </p>
       <p className="mt-1 text-xs leading-5 text-gray-500">{props.data.city} </p>
     </div>

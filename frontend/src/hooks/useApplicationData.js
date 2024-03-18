@@ -1,3 +1,4 @@
+
 import { useReducer, useEffect } from 'react';
 
 export const ACTIONS = {
@@ -15,11 +16,12 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch('/api/events')
+    fetch("http://localhost:8001/api/events")
       .then(res => res.json())
       .then(data => dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data }));
+    
   }, []);
-
+  
  
 
   function reducer(state, action) {
@@ -33,35 +35,44 @@ const useApplicationData = () => {
     }
   }
 
+ 
+
+
 
 const setLoggedIn = function(email, password) {
-
-
- const encodedEmail = encodeURIComponent(email);
-
-  fetch(`/api/users-by-email?email=${encodedEmail}`)
+  fetch("http://localhost:8001/api/users/login", {  
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  })
     .then(res => res.json())
     .then(data => {
       console.log("User data from server:", data);
     
-      if (data) {
+      if (data.id) {
         dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
       } else {
+        dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
        console.error('Invalid email or password');
       }
     })
     .catch(error => {
       console.error('Error fetching user:', error);
-      
-
-    
     });
- }
+};
+
 
 return {
     state,
     setLoggedIn,
+   
   };
 }
 
 export default useApplicationData;
+
+
+
+
