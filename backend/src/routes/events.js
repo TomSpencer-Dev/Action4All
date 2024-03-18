@@ -6,6 +6,7 @@ module.exports = db => {
   router.get("/:id", (request, response) => {
     const userId = request.params.id;
     console.log('line 8: ', userId)
+    console.log("query route: ", request.query.route)
     const query = `
       SELECT 
         json_agg(
@@ -31,7 +32,7 @@ module.exports = db => {
       FROM events AS event
       JOIN users AS creator ON creator.id = event.creator_id
       WHERE creator_id != ${userId}
-      AND event.id NOT IN (
+      AND event.id IN (
         SELECT event_id
         FROM eventuser
         WHERE user_id = ${userId} );
@@ -43,10 +44,51 @@ module.exports = db => {
         console.error("Error fetching events:", error);
         response.status(500).json({ error: "Internal Server Error", details: error.message });
       });
-    //  }else{
-    //    response.status(401).json({ error: "Unauthorized" });
-    //  }
   });
+
+  //  router.get("/volunteer/:id", (request, response) => {
+  //   const userId = request.params.id;
+  //   console.log('line 50: ', userId)
+  //   const query = `
+  //     SELECT 
+  //       json_agg(
+  //         json_build_object(
+  //           'id', event.id,
+  //           'event_name', event.event_name,
+  //           'event_details', event.event_details,
+  //           'start_time', event.start_time,
+  //           'end_time', event.end_time,
+  //           'event_hours', event.event_hours,
+  //           'event_status', event.event_status,
+  //           'event_address', event.event_address,
+  //           'city', event.city,
+  //           'event_date', event.event_date,
+  //           'creator', json_build_object(
+  //             'id', creator.id,
+  //             'first_name', creator.firstname,
+  //             'last_name', creator.lastname,
+  //             'email', creator.email
+  //           )
+  //         )
+  //       ) as event_data
+  //     FROM events AS event
+  //     JOIN users AS creator ON creator.id = event.creator_id
+  //     WHERE creator_id != ${userId}
+  //     AND event.id NOT IN (
+  //       SELECT event_id
+  //       FROM eventuser
+  //       WHERE user_id = ${userId} );
+  //   `;
+  //   db.query(query).then(({ rows }) => {
+  //     response.json(rows[0].event_data);
+  //   })
+  //     .catch((error) => {
+  //       console.error("Error fetching events:", error);
+  //       response.status(500).json({ error: "Internal Server Error", details: error.message });
+  //     });
+  // });
+
+  
 
   router.post("/", (request, response) => {
     const {
