@@ -83,7 +83,7 @@ function deleteEventFromUser(userId, eventId) {
 
 
 
-const setLoggedIn = function(email, password) {
+const setLoggedIn = function(email, password, onLoginSuccess) {
   fetch("http://localhost:8001/api/users/login", {  
     method: 'POST',
     headers: {
@@ -97,9 +97,10 @@ const setLoggedIn = function(email, password) {
     
       if (data.id) {
         dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
+        onLoginSuccess(data); // Call the callback here
       } else {
         dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
-       console.error('Invalid email or password');
+        console.error('Invalid email or password');
       }
     })
     .catch(error => {
