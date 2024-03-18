@@ -30,7 +30,11 @@ module.exports = db => {
         ) as event_data
       FROM events AS event
       JOIN users AS creator ON creator.id = event.creator_id
-      WHERE creator_id != ${userId};
+      WHERE creator_id != ${userId}
+      AND event.id NOT IN (
+        SELECT event_id
+        FROM eventuser
+        WHERE user_id = ${userId} );
     `;
     db.query(query).then(({ rows }) => {
       response.json(rows[0].event_data);
