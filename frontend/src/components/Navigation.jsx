@@ -2,6 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import icon from '../assets/icon.png';
+import { handleSignoutClick } from 'helper/calendar';
 
 function Navigation(props) {
 
@@ -14,6 +15,7 @@ function Navigation(props) {
     Cookies.remove('isLoggedIn');
 
     props.setLoggedIn(null, null);
+    handleSignoutClick()
   };
 
   return (

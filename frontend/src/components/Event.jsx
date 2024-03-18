@@ -1,11 +1,14 @@
 import React from 'react';
+import { handleAuthClick } from "../helper/calendar"
+
 
 function MyEvents(props) {
 
     const handleAddEventClick = () => {
     const userId = 1;
     const eventId = props.data.id;
-  props.addUserToEvent(userId, eventId);
+    props.addUserToEvent(userId, eventId);
+    handleAuthClick(props);
 };
 
 const handleDeleteEventClick = () => {

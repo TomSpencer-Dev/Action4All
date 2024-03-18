@@ -20,7 +20,6 @@ const {
     <div className="App">
       <Router>
         <Navigation setLoggedIn={setLoggedIn} loggedIn={state.loggedIn} />
-        <Calendar />
          <Routes>
           <Route path="*" element={<h4>404 Page not Found</h4>} />
           <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser}/>} />
