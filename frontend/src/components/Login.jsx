@@ -6,20 +6,13 @@ function Login({ setLoggedIn, loggedIn }) {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-  
-    setLoggedIn(email, password);
-
-    if (loggedIn && loggedIn.id) {
-
-      Cookies.set('user_id', loggedIn.id);
-      Cookies.set('isLoggedIn', 'true');
-    }
-    else {
-      console.error('Invalid email or password');
-    }
-
-  };
-  
+  setLoggedIn(email, password, (userData) => {
+    console.log('Logged in user data:', userData);
+    // Now set your cookies here or any other action you need to perform on login success
+    Cookies.set('user_id', userData.id);
+    Cookies.set('isLoggedIn', 'true');
+  });
+};
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

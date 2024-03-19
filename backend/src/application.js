@@ -37,6 +37,7 @@ module.exports = function application(ENV) {
 
   app.use("/api/users", users(db));
   app.use("/api/events", events(db));
+  app.use("/api/eventuser", eventuser(db));
   
 
 

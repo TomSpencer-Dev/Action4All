@@ -2,9 +2,10 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import icon from '../assets/icon.png';
+import { handleSignoutClick } from 'helper/calendar';
 
 function Navigation(props) {
-
+  const userEmail = props.loggedIn.email
   const user_id = Cookies.get('user_id');
   const isLoggedIn = Cookies.get('isLoggedIn');
 
@@ -14,6 +15,7 @@ function Navigation(props) {
     Cookies.remove('isLoggedIn');
 
     props.setLoggedIn(null, null);
+    handleSignoutClick()
   };
   
   
@@ -43,7 +45,7 @@ function Navigation(props) {
         <div>
           {isLoggedIn ? (
             <div>
-
+              {userEmail}
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
