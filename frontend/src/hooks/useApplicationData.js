@@ -109,11 +109,14 @@ const setLoggedIn = function(email, password) {
 };
 
 
+
+
 return {
     state,
     setLoggedIn,
     addUserToEvent,
-    deleteEventFromUser
+    deleteEventFromUser,
+    
   };
 }
 
