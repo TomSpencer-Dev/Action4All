@@ -1,6 +1,7 @@
 import { toHaveStyle } from '@testing-library/jest-dom/matchers';
 import { useReducer, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { useLocation } from 'react-router-dom';
 
 
 export const ACTIONS = {
@@ -17,16 +18,24 @@ const useApplicationData = () => {
     location: '/'
   };
 
-  const [state, dispatch] = useReducer(reducer, initialState);
 
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   useEffect(() => {
     fetchUserData();
   }, []);
 
-  // useEffect(() => {
-  //   const userId = Cookies.get('user_id');
-
-  // }, [state.loggedIn]);
+  useEffect(() => {
+    if (state.loggedIn.id) {
+        fetch(`http://localhost:8001/api/events/${state.loggedIn.id}?location=${state.location}`, {
+        })
+          .then(res => res.json())
+          .then(data => {
+            dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
+          });  
+    }
+  }, [state.loggedIn, state.location]);
 
 
 
@@ -71,6 +80,27 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.SET_LOCATION, payload: location });
   }
 
+  function deleteEvent(eventId) {
+    fetch(`/api/events/${eventId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert(data.message);
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting event:', error);
+        alert('Failed to delete event. Please try again.');
+      });
+  }
+
   function deleteEventFromUser(userId, eventId) {
     fetch(`/api/eventuser/${userId}/${eventId}`, {
       method: 'DELETE',
@@ -106,13 +136,8 @@ const useApplicationData = () => {
 
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
-          fetch(`http://localhost:8001/api/events/${data.id}?location=${location}`, {
-          })
-            .then(res2 => res2.json())
-            .then(data2 => {
-              dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data2 });
-              onLoginSuccess(data); // Call the callback here
-            });
+          onLoginSuccess(data); // Call the callback here
+
         } else {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
           console.error('Invalid email or password');
@@ -147,7 +172,8 @@ const useApplicationData = () => {
     setLoggedIn,
     addUserToEvent,
     deleteEventFromUser,
-    setLocation
+    setLocation,
+    deleteEvent
   };
 };
 

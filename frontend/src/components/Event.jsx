@@ -24,11 +24,17 @@ function MyEvents(props) {
     handleAuthClick(props);
   };
 
-  const handleDeleteEventClick = () => {
+const handleDeleteEventClick = () => {
+  const eventId = props.data.id;
+  props.deleteEvent(eventId);
+}
+
+  const handleWithdrawEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
     props.deleteEventFromUser(userId, eventId);
   };
+console.log("Event ",props.location);
   return (
     <li className="flex justify-between items-center gap-x-6 py-5">
       <div className="flex min-w-0 gap-x-4">
@@ -39,8 +45,22 @@ function MyEvents(props) {
         </div>
 
         <div className="flex items-center">
-          {/* <button className="bg-transparent hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>Sign Up</button> */}
-          <button className="bg-transparent hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>Withdraw</button>
+          
+          {props.data.creator.id === props.loggedIn.id ? (
+  <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>
+    Delete Event
+  </button>
+) : (
+  props.location === "/volunteer" ? (
+    <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
+      Sign Up
+    </button>
+  ) : (
+    <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
+      Withdraw
+    </button>
+  )
+)}
         </div>
       </div>
       <div className="flex min-w-0 gap-x-4 event-details">

@@ -12,9 +12,8 @@ import Cookies from 'js-cookie';
 
 const App = () => {
 const {
-   state, setLocation, setLoggedIn, addUserToEvent, deleteEventFromUser } = useApplicationData();
+   state, deleteEvent,setLocation, setLoggedIn, addUserToEvent, deleteEventFromUser } = useApplicationData();
    const isLoggedIn = Cookies.get('isLoggedIn') ;
-  
 
   return (
     <div className="App">
@@ -22,8 +21,8 @@ const {
         <Navigation setLoggedIn={setLoggedIn} loggedIn={state.loggedIn} setLocation = {setLocation} />
          <Routes>
           <Route path="*" element={<h4>404 Page not Found</h4>} />
-          <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser} setLocation = {setLocation} location = {state.location}/>} />
-          <Route path="/volunteer" element={!isLoggedIn? ( <Navigate replace to={"/"} /> ) : (<Opportunities events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser} setLocation = {setLocation} />)}/>
+          <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser} setLocation = {setLocation} location = {state.location} deleteEvent = {deleteEvent}/>} />
+          <Route path="/volunteer" element={!isLoggedIn? ( <Navigate replace to={"/"} /> ) : (<Opportunities events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser} setLocation = {setLocation} location = {state.location} />)}/>
           <Route path="/create" element={isLoggedIn?(<EventForm />):( <Navigate replace to={"/"} /> )} />
           <Route path="/register" element={<Register />} />
         </Routes>

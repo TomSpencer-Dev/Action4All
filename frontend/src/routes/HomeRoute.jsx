@@ -9,11 +9,12 @@ import { useLocation } from 'react-router-dom';
 
 const HomeRoute = (props) => {
   const isLoggedIn = Cookies.get('isLoggedIn') ;
+
   return (
     <>
         { isLoggedIn ? 
         <div className="home-route">
-          <Events events = {props.events} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} loggedIn = {props.loggedIn} setLocation={props.setLocation} location = {props.location} />
+          <Events events = {props.events} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} loggedIn = {props.loggedIn} setLocation={props.setLocation} location = {props.location} deleteEvent = {props.deleteEvent}/>
         </div>
        : 
         <div className="home-route">
