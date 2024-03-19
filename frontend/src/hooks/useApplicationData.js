@@ -82,9 +82,6 @@ const useApplicationData = () => {
       });
   }
 
-
-
-
   const setLoggedIn = function(email, password, onLoginSuccess) {
     fetch("http://localhost:8001/api/users/login", {
       method: 'POST',

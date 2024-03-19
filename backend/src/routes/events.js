@@ -31,7 +31,7 @@ module.exports = db => {
         ) as event_data
       FROM events AS event
       JOIN users AS creator ON creator.id = event.creator_id
-      WHERE event.id NOT IN (
+      WHERE event.id IN (
         SELECT event_id
         FROM eventuser
         WHERE user_id = ${userId} );
