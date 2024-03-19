@@ -6,7 +6,6 @@ module.exports = db => {
   router.get("/:id", (request, response) => {
     const userId = request.params.id;
     console.log('line 8: ', userId)
-    console.log("query route: ", request.query.route)
     const query = `
       SELECT 
         json_agg(
@@ -31,7 +30,8 @@ module.exports = db => {
         ) as event_data
       FROM events AS event
       JOIN users AS creator ON creator.id = event.creator_id
-      WHERE event.id IN (
+      WHERE creator_id = ${userId}
+      OR event.id IN (
         SELECT event_id
         FROM eventuser
         WHERE user_id = ${userId} );

@@ -5,14 +5,16 @@ import Cookies from 'js-cookie';
 
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
-  SET_LOGGED_IN: 'SET_LOGGED_IN'
+  SET_LOGGED_IN: 'SET_LOGGED_IN',
+  SET_LOCATION: 'SET_LOCATION'
 };
 
 const useApplicationData = () => {
 
   const initialState = {
     eventsData: [],
-    loggedIn: {}
+    loggedIn: {},
+    location: '/'
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -34,6 +36,9 @@ const useApplicationData = () => {
         return { ...state, eventsData: action.payload };
       case ACTIONS.SET_LOGGED_IN:
         return { ...state, loggedIn: action.payload };
+      case ACTIONS.SET_LOCATION:
+        return { ...state, location: action.payload };
+
       default:
         return state;
     }
@@ -59,6 +64,11 @@ const useApplicationData = () => {
         console.error('Error adding user to event:', error);
         alert('Failed to add user to event. Please try again.');
       });
+  }
+
+
+  function setLocation(location) {
+    dispatch({ type: ACTIONS.SET_LOCATION, payload: location });
   }
 
   function deleteEventFromUser(userId, eventId) {
@@ -96,7 +106,8 @@ const useApplicationData = () => {
 
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
-          fetch(`http://localhost:8001/api/events/${data.id}`)
+          fetch(`http://localhost:8001/api/events/${data.id}?location=${location}`, {
+          })
             .then(res2 => res2.json())
             .then(data2 => {
               dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data2 });
@@ -135,7 +146,8 @@ const useApplicationData = () => {
     state,
     setLoggedIn,
     addUserToEvent,
-    deleteEventFromUser
+    deleteEventFromUser,
+    setLocation
   };
 };
 
