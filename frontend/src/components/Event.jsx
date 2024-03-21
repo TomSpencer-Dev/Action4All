@@ -14,7 +14,7 @@ const handleDeleteEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
     props.deleteEventFromUser(userId, eventId);
-
+   
 };
   return (
  <li className="flex justify-between gap-x-6 py-5">

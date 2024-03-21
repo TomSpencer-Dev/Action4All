@@ -99,6 +99,7 @@ const useApplicationData = () => {
 
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
+          console.log(data.id);
           fetch(`http://localhost:8001/api/events/${data.id}`)
             .then(res2 => res2.json())
             .then(data2 => {

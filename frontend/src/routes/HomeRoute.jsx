@@ -33,9 +33,3 @@ const HomeRoute = (props) => {
 export default HomeRoute;
 
 
-
-
-
-
-
-
