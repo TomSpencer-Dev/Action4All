@@ -28,12 +28,12 @@ const useApplicationData = () => {
 
   useEffect(() => {
     if (state.loggedIn.id) {
-        fetch(`http://localhost:8001/api/events/${state.loggedIn.id}?location=${state.location}`, {
-        })
-          .then(res => res.json())
-          .then(data => {
-            dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
-          });  
+      fetch(`http://localhost:8001/api/events/${state.loggedIn.id}?location=${state.location}`, {
+      })
+        .then(res => res.json())
+        .then(data => {
+          dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
+        });
     }
   }, [state.loggedIn, state.location]);
 
@@ -118,11 +118,13 @@ const useApplicationData = () => {
       })
       .catch(error => {
         console.error('Error withdrawing from event:', error);
+
         alert('Failed to withdraw from event. Please try again.');
+
       });
   }
 
-  const setLoggedIn = function(email, password, onLoginSuccess) {
+  const setLoggedIn = function (email, password, onLoginSuccess) {
     fetch("http://localhost:8001/api/users/login", {
       method: 'POST',
       headers: {

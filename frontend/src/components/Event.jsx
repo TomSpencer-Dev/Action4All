@@ -103,5 +103,3 @@ function MyEvents(props) {
 
 export default MyEvents;
 
-
-
