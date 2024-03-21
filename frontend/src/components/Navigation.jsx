@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import icon from '../assets/icon.png';
 import { handleSignoutClick } from 'helper/calendar';
 import 'animate.css';
+import BeatingHeartIcon from './BeatingHeartIcon';
 
 function Navigation(props) {
-  const userEmail = props.loggedIn.email
+  const userEmail = props.loggedIn.email;
   const user_id = Cookies.get('user_id');
   const isLoggedIn = Cookies.get('isLoggedIn');
 
@@ -16,13 +17,14 @@ function Navigation(props) {
     Cookies.remove('isLoggedIn');
 
     props.setLoggedIn(null, null);
-    handleSignoutClick()
+    handleSignoutClick();
   };
-  
-  
+
+
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-sky-400 p-6">
+
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <Link to="/" >
           <img className="png" src={icon} alt="icon" title="icon" />
@@ -45,8 +47,12 @@ function Navigation(props) {
         </div>
         <div>
           {isLoggedIn ? (
-            <div className="animate__animated animate__fadeInRight">
-              <span className="text-white mr-3">{userEmail}</span>
+
+            <div className="animate__animated animate__fadeInRight" style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <BeatingHeartIcon />
+                <span className="text-white mr-3">{userEmail}</span>
+              </div>
               <button
                 className="bg-sky-400 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
                 type="button"

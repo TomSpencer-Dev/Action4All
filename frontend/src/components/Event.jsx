@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import { handleAuthClick } from "../helper/calendar";
 import '../styles/Event.scss';
 
@@ -20,6 +20,7 @@ function MyEvents(props) {
   const handleAddEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
+  setClick(!isClick)
     props.addUserToEvent(userId, eventId);
     handleAuthClick(props);
   };
@@ -35,10 +36,14 @@ function MyEvents(props) {
     props.deleteEventFromUser(userId, eventId);
   };
   console.log("Event ", props.location);
+  const [isClick, setClick] = useState(false);
   return (
     <li className="flex justify-between items-center gap-x-6 py-5">
       <div className="flex min-w-0 gap-x-4">
+<div>
         <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={`https://picsum.photos/${props.data.id}00`} alt="" />
+
+</div>
         <div className="min-w-0 flex-auto">
           <p className="text-sm font-semibold leading-6 text-gray-900">{props.data.event_name}</p>
           <p className="mt-1 text-xs leading-5 text-gray-500 multiline-text">{props.data.event_details}</p>
@@ -52,15 +57,19 @@ function MyEvents(props) {
             </button>
           ) : (
             props.location === "/volunteer" ? (
+<>
               <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
                 Sign Up
+                
               </button>
+</>
             ) : (
               <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
                 Withdraw
               </button>
             )
           )}
+        
         </div>
       </div>
       <div className="flex min-w-0 gap-x-4 event-details">
@@ -82,7 +91,7 @@ function MyEvents(props) {
         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.event_address} </p>
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.city} </p>
-          {props.location === "/volunteer" ? <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white">
+          {props.location === "/volunteer" ? <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white" >
             Available
           </button> :
             props.data.creator.id === props.loggedIn.id ? (

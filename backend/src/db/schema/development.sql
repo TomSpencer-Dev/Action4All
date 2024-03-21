@@ -18,7 +18,7 @@ VALUES
 INSERT INTO EVENTS (EVENT_NAME, EVENT_DETAILS, START_TIME, END_TIME, EVENT_HOURS, EVENT_STATUS, EVENT_ADDRESS, CITY, EVENT_DATE, CREATOR_ID)
 VALUES 
   ('Race Setup', 'We need help setting up water stations for a marathon', '13:00:00', '17:00:00', 4, 'INCOMPLETE', '456 status Hall Road', 'Montreal', '2024-06-01', 7),
-  ('Meals on Wheels', 'We need help delivering meals to at-risk clients in the community', '10:00:00', '17:00:00', 7, 'INCOMPLETE', '5 Union Court Street', 'Vancouver', '2024-06-15', 9),
+  ('Meals on Wheels', 'We need help delivering meals to at-risk clients in the community. Plus we want lots of test writing to check overflow.', '10:00:00', '17:00:00', 7, 'INCOMPLETE', '5 Union Court Street', 'Vancouver', '2024-06-15', 9),
   ('Ottawa Fair', 'We need people to run the info booth', '9:00:00', '17:00:00', 8, 'INCOMPLETE', '123 Order Drive', 'Ottawa', '2024-06-11', 8),
   ('Annual Petting Zoo', 'We need people to check tickets at the door', '14:00:00', '18:00:00', 4, 'INCOMPLETE', '476 Talus Drive', 'Vancouver', '2024-06-02', 2),
   ('Street Party Fundraiser', 'We require first aid attendants', '10:00:00', '14:00:00', 4, 'INCOMPLETE', '1 Main Street', 'Montreal', '2024-06-22', 4);
