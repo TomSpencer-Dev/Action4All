@@ -22,7 +22,7 @@ const useApplicationData = () => {
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -89,17 +89,12 @@ const useApplicationData = () => {
       }
     })
       .then(response => {
-        // Check if response is OK (status 200)
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // Return response text
         return response.json();
       })
       .then(data => {
-        // Log the response message
-        console.log(data);
-        // Display message to the user
         alert("Event deleted succssfully!");
       })
       .catch(error => {
@@ -131,7 +126,7 @@ const useApplicationData = () => {
       });
   }
 
-  const setLoggedIn = function(email, password, onLoginSuccess) {
+  const setLoggedIn = function (email, password, onLoginSuccess) {
     fetch("http://localhost:8001/api/users/login", {
       method: 'POST',
       headers: {
@@ -141,8 +136,6 @@ const useApplicationData = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log("User data from server:", data);
-
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
           onLoginSuccess(data); // Call the callback here
@@ -154,7 +147,7 @@ const useApplicationData = () => {
       })
       .catch(error => {
         console.error('Error fetching user:', error);
-        
+
       });
   };
 
@@ -167,7 +160,6 @@ const useApplicationData = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log("Fetched user data:", data);
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
         })
         .catch(error => {

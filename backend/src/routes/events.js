@@ -7,7 +7,6 @@ module.exports = db => {
     const userId = request.params.id;
     const location = request.query.location;
 
-    console.log(location);
     let WHERE_CLAUSE = "";
     {(location === "/") ? (
       WHERE_CLAUSE = `WHERE creator_id = ${userId}
@@ -22,7 +21,6 @@ module.exports = db => {
         FROM eventuser
         WHERE user_id = ${userId} );`)
     }
-console.log(WHERE_CLAUSE);
 
     const query = `
       SELECT 
@@ -60,11 +58,8 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-
-
-// creat event
-
-  router.post("/", (request, response) => {
+ // POST create event
+router.post("/", (request, response) => {
     const {
       event_name,
       event_details,
@@ -115,7 +110,8 @@ console.log(WHERE_CLAUSE);
         });
       });
   });
-  // PUT (update) an existing event
+
+   // PUT update event
   router.put("/:id", (request, response) => {
     const eventId = request.params.id;
     const {
@@ -170,16 +166,13 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-  
-
-  router.delete("/:id", async (request, response) => {
+   // DELETE event
+router.delete("/:id", async (request, response) => {
     const eventId = request.params.id;
   
     try {
-      // First, delete related entries from eventuser table
+      
       await db.query(`DELETE FROM eventuser WHERE event_id = $1;`, [eventId]);
-  
-      // Next, delete the event from the events table
       const eventDeletionResult = await db.query(`DELETE FROM events WHERE id = $1 RETURNING *;`, [eventId]);
   
       if (eventDeletionResult.rows.length === 0) {

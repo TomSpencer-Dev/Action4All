@@ -10,8 +10,6 @@ function Login({ setLoggedIn, loggedIn }) {
 
   const handleLogin = () => {
     setLoggedIn(email, password, (userData) => {
-      console.log('Logged in user data:', userData);
-      // Now set your cookies here or any other action you need to perform on login success
       Cookies.set('user_id', userData.id);
       Cookies.set('isLoggedIn', 'true');
     });

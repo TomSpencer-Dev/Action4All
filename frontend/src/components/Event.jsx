@@ -35,8 +35,9 @@ function MyEvents(props) {
     const eventId = props.data.id;
     props.deleteEventFromUser(userId, eventId);
   };
-  console.log("Event ", props.location);
+  
   const [isClick, setClick] = useState(false);
+  
   return (
     <li className="flex justify-between items-center gap-x-6 py-5">
       <div className="flex min-w-0 gap-x-4">

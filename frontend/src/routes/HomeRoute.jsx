@@ -15,7 +15,14 @@ const HomeRoute = (props) => {
     <>
         { isLoggedIn ? 
         <div className="home-route">
-          <Events events = {props.events} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} loggedIn = {props.loggedIn} setLocation={props.setLocation} location = {props.location} deleteEvent = {props.deleteEvent}/>
+          <Events 
+          events = {props.events} 
+          addUserToEvent = {props.addUserToEvent} 
+          deleteEventFromUser = {props.deleteEventFromUser} 
+          loggedIn = {props.loggedIn} 
+          setLocation={props.setLocation} 
+          location = {props.location} 
+          deleteEvent = {props.deleteEvent}/>
         </div>
        : 
         <div className="home-route">
