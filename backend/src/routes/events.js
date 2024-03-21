@@ -60,49 +60,9 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-  //  router.get("/volunteer/:id", (request, response) => {
-  //   const userId = request.params.id;
-  //   console.log('line 50: ', userId)
-  //   const query = `
-  //     SELECT 
-  //       json_agg(
-  //         json_build_object(
-  //           'id', event.id,
-  //           'event_name', event.event_name,
-  //           'event_details', event.event_details,
-  //           'start_time', event.start_time,
-  //           'end_time', event.end_time,
-  //           'event_hours', event.event_hours,
-  //           'event_status', event.event_status,
-  //           'event_address', event.event_address,
-  //           'city', event.city,
-  //           'event_date', event.event_date,
-  //           'creator', json_build_object(
-  //             'id', creator.id,
-  //             'first_name', creator.firstname,
-  //             'last_name', creator.lastname,
-  //             'email', creator.email
-  //           )
-  //         )
-  //       ) as event_data
-  //     FROM events AS event
-  //     JOIN users AS creator ON creator.id = event.creator_id
-  //     WHERE creator_id != ${userId}
-  //     AND event.id NOT IN (
-  //       SELECT event_id
-  //       FROM eventuser
-  //       WHERE user_id = ${userId} );
-  //   `;
-  //   db.query(query).then(({ rows }) => {
-  //     response.json(rows[0].event_data);
-  //   })
-  //     .catch((error) => {
-  //       console.error("Error fetching events:", error);
-  //       response.status(500).json({ error: "Internal Server Error", details: error.message });
-  //     });
-  // });
 
 
+// creat event
 
   router.post("/", (request, response) => {
     const {
@@ -210,32 +170,36 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-  // DELETE an event
-  router.delete("/events/:id", (request, response) => {
+  
+
+  router.delete("/:id", async (request, response) => {
     const eventId = request.params.id;
-
-    db.query(`DELETE FROM events WHERE id = $1 RETURNING *;`, [eventId])
-      .then(({ rows }) => {
-        if (rows.length === 0) {
-          response.status(404).json({ error: "Event not found" });
-        } else {
-          response.json({ message: "Event deleted successfully" });
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting event:", error);
-        response.status(500).json({ error: "Internal Server Error", details: error.message });
-      });
+  
+    try {
+      // First, delete related entries from eventuser table
+      await db.query(`DELETE FROM eventuser WHERE event_id = $1;`, [eventId]);
+  
+      // Next, delete the event from the events table
+      const eventDeletionResult = await db.query(`DELETE FROM events WHERE id = $1 RETURNING *;`, [eventId]);
+  
+      if (eventDeletionResult.rows.length === 0) {
+        response.status(404).json({ error: "Event not found" });
+        return;
+      }
+  
+      response.json({ message: "Event and related entries deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      response.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
   });
-//test
-
-
+  
+ 
 // routes/events.js
 
 router.get("/", (request, response) => {
-  const userId = request.query.userId; // Assuming you pass the user's ID as a query parameter
+  const userId = request.query.userId; 
 
-  // Modify your SQL query to filter events based on userId and other criteria
   db.query(`
     SELECT 
       json_agg(
@@ -270,6 +234,8 @@ router.get("/", (request, response) => {
     response.status(500).json({ error: "Internal Server Error", details: error.message });
   });
 });
+
+module.exports = router;
 
   return router;
 };
