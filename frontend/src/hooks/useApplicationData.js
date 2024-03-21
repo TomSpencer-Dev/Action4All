@@ -35,7 +35,7 @@ const useApplicationData = () => {
           dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
         });
     }
-  }, [state.loggedIn, state.location]);
+  }, [state.loggedIn, state.location, state.eventsData]);
 
 
 
