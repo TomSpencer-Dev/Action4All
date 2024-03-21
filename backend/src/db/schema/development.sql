@@ -12,12 +12,9 @@ VALUES
   ( 'Brittany', 'Taylor', 'Brit.Tay@user.com', '1234', 'Toronto', 21);
 
 -- Inserting into EVENTS table
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> main
 INSERT INTO EVENTS (EVENT_NAME, EVENT_DETAILS, START_TIME, END_TIME, EVENT_HOURS, EVENT_STATUS, EVENT_ADDRESS, CITY, EVENT_DATE, CREATOR_ID)
 VALUES 
   ('Race Setup', 'We need help setting up water stations for a marathon', '13:00:00', '17:00:00', 4, 'INCOMPLETE', '456 status Hall Road', 'Montreal', '2024-06-01', 7),

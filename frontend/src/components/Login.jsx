@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import 'animate.css';
 
 function Login({ setLoggedIn, loggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const handleLogin = () => {
-  setLoggedIn(email, password, (userData) => {
+  setLoggedIn(email, password,  (userData) => {
     console.log('Logged in user data:', userData);
     // Now set your cookies here or any other action you need to perform on login success
     Cookies.set('user_id', userData.id);
@@ -15,7 +17,7 @@ function Login({ setLoggedIn, loggedIn }) {
 };
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 animate__animated animate__bounce">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
       </div>

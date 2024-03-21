@@ -5,8 +5,25 @@ module.exports = db => {
   // GET all events
   router.get("/:id", (request, response) => {
     const userId = request.params.id;
-    console.log('line 8: ', userId)
-    console.log("query route: ", request.query.route)
+    const location = request.query.location;
+
+    console.log(location);
+    let WHERE_CLAUSE = "";
+    {(location === "/") ? (
+      WHERE_CLAUSE = `WHERE creator_id = ${userId}
+      OR event.id IN (
+        SELECT event_id
+        FROM eventuser
+        WHERE user_id = ${userId} );`)
+        : 
+(WHERE_CLAUSE = `WHERE creator_id != ${userId}
+      AND event.id  NOT IN (
+        SELECT event_id
+        FROM eventuser
+        WHERE user_id = ${userId} );`)
+    }
+console.log(WHERE_CLAUSE);
+
     const query = `
       SELECT 
         json_agg(
@@ -31,11 +48,8 @@ module.exports = db => {
         ) as event_data
       FROM events AS event
       JOIN users AS creator ON creator.id = event.creator_id
-      WHERE creator_id != ${userId}
-      AND event.id IN (
-        SELECT event_id
-        FROM eventuser
-        WHERE user_id = ${userId} );
+      ${WHERE_CLAUSE}
+      
     `;
     db.query(query).then(({ rows }) => {
       response.json(rows[0].event_data);
@@ -88,7 +102,7 @@ module.exports = db => {
   //     });
   // });
 
-  
+
 
   router.post("/", (request, response) => {
     const {
