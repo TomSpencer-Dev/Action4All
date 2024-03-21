@@ -87,18 +87,24 @@ const useApplicationData = () => {
         'Content-Type': 'application/json',
       }
     })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert(data.message);
-        } else {
-          throw new Error(data.message);
+       .then(response => {
+        // Check if response is OK (status 200)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-      })
-      .catch(error => {
+        // Return response text
+        return response.json();
+    })
+    .then(data => {
+        // Log the response message
+        console.log(data);
+        // Display message to the user
+        alert(data.message);
+    })
+    .catch(error => {
         console.error('Error deleting event:', error);
         alert('Failed to delete event. Please try again.');
-      });
+    });
   }
 
   function deleteEventFromUser(userId, eventId) {
