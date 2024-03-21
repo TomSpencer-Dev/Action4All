@@ -7,6 +7,7 @@ import Login from 'components/Login';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 
+
 const HomeRoute = (props) => {
   const isLoggedIn = Cookies.get('isLoggedIn') ;
 
@@ -19,9 +20,6 @@ const HomeRoute = (props) => {
        : 
         <div className="home-route">
           <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn } />
-         
-          
-          
         </div>
         
         }

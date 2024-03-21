@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 
 
+
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
   SET_LOGGED_IN: 'SET_LOGGED_IN',
@@ -64,7 +65,7 @@ const useApplicationData = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          alert(data.message);
+          alert("Signed up for event successfully");
         } else {
           throw new Error(data.message);
         }
@@ -87,24 +88,24 @@ const useApplicationData = () => {
         'Content-Type': 'application/json',
       }
     })
-       .then(response => {
+      .then(response => {
         // Check if response is OK (status 200)
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok');
         }
         // Return response text
         return response.json();
-    })
-    .then(data => {
+      })
+      .then(data => {
         // Log the response message
         console.log(data);
         // Display message to the user
-        alert(data.message);
-    })
-    .catch(error => {
+        alert("Event deleted succssfully!");
+      })
+      .catch(error => {
         console.error('Error deleting event:', error);
         alert('Failed to delete event. Please try again.');
-    });
+      });
   }
 
   function deleteEventFromUser(userId, eventId) {
@@ -117,7 +118,7 @@ const useApplicationData = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          alert(data.message);
+          alert("Withdrawal from event successful!");
         } else {
           throw new Error(data.message);
         }
@@ -130,7 +131,7 @@ const useApplicationData = () => {
       });
   }
 
-  const setLoggedIn = function (email, password, onLoginSuccess) {
+  const setLoggedIn = function(email, password, onLoginSuccess) {
     fetch("http://localhost:8001/api/users/login", {
       method: 'POST',
       headers: {
@@ -153,6 +154,7 @@ const useApplicationData = () => {
       })
       .catch(error => {
         console.error('Error fetching user:', error);
+        
       });
   };
 

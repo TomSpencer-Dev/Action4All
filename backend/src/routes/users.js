@@ -82,9 +82,6 @@ module.exports = db => {
       });
 });
 
-
-
-
   router.post('/register', async (req, res) => {
     const userData = req.body;
     console.log('Received registration data:', userData);
