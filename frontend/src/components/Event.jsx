@@ -24,17 +24,17 @@ function MyEvents(props) {
     handleAuthClick(props);
   };
 
-const handleDeleteEventClick = () => {
-  const eventId = props.data.id;
-  props.deleteEvent(eventId);
-}
+  const handleDeleteEventClick = () => {
+    const eventId = props.data.id;
+    props.deleteEvent(eventId);
+  };
 
   const handleWithdrawEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
     props.deleteEventFromUser(userId, eventId);
   };
-console.log("Event ",props.location);
+  console.log("Event ", props.location);
   return (
     <li className="flex justify-between items-center gap-x-6 py-5">
       <div className="flex min-w-0 gap-x-4">
@@ -45,22 +45,22 @@ console.log("Event ",props.location);
         </div>
 
         <div className="flex items-center">
-          
+
           {props.data.creator.id === props.loggedIn.id ? (
-  <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>
-    Delete Event
-  </button>
-) : (
-  props.location === "/volunteer" ? (
-    <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
-      Sign Up
-    </button>
-  ) : (
-    <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
-      Withdraw
-    </button>
-  )
-)}
+            <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>
+              Delete Event
+            </button>
+          ) : (
+            props.location === "/volunteer" ? (
+              <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
+                Sign Up
+              </button>
+            ) : (
+              <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
+                Withdraw
+              </button>
+            )
+          )}
         </div>
       </div>
       <div className="flex min-w-0 gap-x-4 event-details">
@@ -82,8 +82,19 @@ console.log("Event ",props.location);
         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.event_address} </p>
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.city} </p>
-          {props.data.creator.id == props.loggedIn.id ? (<button className="cursor-default min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">My Event</button>) :
-            (<button className="cursor-default text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white min-w-40">Volunteering</button>)}
+          {props.location === "/volunteer" ? <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white">
+            Available
+          </button> :
+            props.data.creator.id === props.loggedIn.id ? (
+              <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
+                My Event
+              </button>
+            ) : (
+              <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white">
+                Volunteering
+              </button>
+            )
+          }
         </div>
       </div>
     </li>

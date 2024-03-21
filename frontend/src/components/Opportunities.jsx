@@ -16,7 +16,7 @@ useEffect(() => {
     return <Event key={event.id} data={event} addUserToEvent = {props.addUserToEvent} deleteEventFromUser = {props.deleteEventFromUser} loggedIn = {props.loggedIn} location = {props.location}/>;
   }) : <div></div>
   return (
-   <ul role="list" className="divide-y divide-gray-100">
+   <ul role="list" className="divide-y divide-gray-100 home-route">
         {eventItems}
       </ul>
   );
