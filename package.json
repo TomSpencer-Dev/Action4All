@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/TomSpencer-Dev/action4all#readme",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "js-cookie": "^3.0.5",
     "react-hot-toast": "^2.4.1"
   }

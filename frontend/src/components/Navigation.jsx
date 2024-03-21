@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import icon from '../assets/icon.png';
 import { handleSignoutClick } from 'helper/calendar';
+import 'animate.css';
 
 function Navigation(props) {
   const userEmail = props.loggedIn.email
@@ -42,7 +43,7 @@ function Navigation(props) {
         </div>
         <div>
           {isLoggedIn ? (
-            <div>
+            <div className="animate__animated animate__fadeInRight">
               <span className="text-white mr-3">{userEmail}</span>
               <button
                 className="bg-sky-400 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
