@@ -13,7 +13,6 @@ function Register() {
   });
 
   const handleChange = (e) => {
-    // Update the form data when input values change
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -21,11 +20,8 @@ function Register() {
   };
 
   const handleSubmit = async () => {
-    console.log('Form Data:', formData);
-
     try {
       const response = await fetch(`${API_BASE_URL}/register`, {
-        //const response = await fetch('http://localhost:8001/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,14 +29,10 @@ function Register() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      console.log('Server response:', data);
-
-      // Handle the response as needed by redirecting to a new page upon successful registration
       if (response.ok) {
-        window.location.href = '/'; // Redirect to login page
+        window.location.href = '/';
       } else {
-        // Handle registration failure
+
         console.error('Registration failed');
       }
     } catch (error) {
