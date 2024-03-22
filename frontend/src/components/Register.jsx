@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { redirect } from "react-router-dom";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -27,6 +29,14 @@ function Register() {
       });
 
       if (response.ok) {
+
+
+        toast.success("User registered successfully!", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 2000,
+          closeOnClick: true
+        });
         window.location.href = '/';
       } else {
 
@@ -51,7 +61,7 @@ function Register() {
                 First Name
               </label>
               <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-event_name" type="text" placeholder="Enter first name..." value={formData.firstName}
-                onChange={handleChange} name='firstName'/>
+                onChange={handleChange} name='firstName' />
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -67,7 +77,7 @@ function Register() {
                 Email
               </label>
               <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-start_time" type="text" placeholder="email@user.com" value={formData.email}
-                onChange={handleChange} name='email'/>
+                onChange={handleChange} name='email' />
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -76,7 +86,7 @@ function Register() {
               <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-event_length" type="text" placeholder="Enter password..." value={formData.password}
                 onChange={handleChange} name="password" />
             </div>
-          </div>          
+          </div>
           <div className="flex flex-wrap -mx-3 mb-2">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
@@ -90,12 +100,12 @@ function Register() {
                 value={formData.city}
                 onChange={handleChange} />
             </div>
-            <button className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              type="button"
-              onClick={handleSubmit}>
-              Submit
-            </button>
           </div>
+          <button className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            type="button"
+            onClick={handleSubmit}>
+            Submit
+          </button>
         </form>
       </div>
     </div>
