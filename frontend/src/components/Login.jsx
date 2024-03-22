@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import 'animate.css';
 
-
 function Login({ setLoggedIn, loggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
 
   const handleLogin = () => {
     setLoggedIn(email, password, (userData) => {

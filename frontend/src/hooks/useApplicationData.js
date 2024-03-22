@@ -3,8 +3,6 @@ import { useReducer, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 
-
-
 export const ACTIONS = {
   SET_EVENTS_DATA: 'SET_EVENTS_DATA',
   SET_LOGGED_IN: 'SET_LOGGED_IN',
@@ -12,14 +10,11 @@ export const ACTIONS = {
 };
 
 const useApplicationData = () => {
-
   const initialState = {
     eventsData: [],
     loggedIn: {},
     location: '/'
   };
-
-
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -37,11 +32,6 @@ const useApplicationData = () => {
         });
     }
   }, [state.location, state.loggedIn]);
-
-  // const loadEvents = function => () {
-
-  //   }
-
 
   function reducer(state, action) {
     switch (action.type) {
@@ -80,7 +70,6 @@ const useApplicationData = () => {
       });
   }
 
-
   function setLocation(location) {
     dispatch({ type: ACTIONS.SET_LOCATION, payload: location });
   }
@@ -99,9 +88,6 @@ const useApplicationData = () => {
         return response.json();
       })
       .then(data => {
-        // Log the response message
-        console.log(data);
-        // Display message to the user
         const newEvents = state.eventsData.filter(event => event.id != eventId);
         dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: newEvents });
         alert("Event deleted succssfully!");
@@ -121,7 +107,6 @@ const useApplicationData = () => {
       });
   }
 
-
   function deleteEventFromUser(userId, eventId) {
     fetch(`/api/eventuser/${userId}/${eventId}`, {
       method: 'DELETE',
@@ -140,13 +125,11 @@ const useApplicationData = () => {
       })
       .catch(error => {
         console.error('Error withdrawing from event:', error);
-
         alert('Failed to withdraw from event. Please try again.');
-
       });
   }
 
-  const setLoggedIn = function(email, password, onLoginSuccess) {
+  const setLoggedIn = function (email, password, onLoginSuccess) {
     fetch("/api/users/login", {
       method: 'POST',
       headers: {
@@ -158,7 +141,7 @@ const useApplicationData = () => {
       .then(data => {
         if (data.id) {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: data });
-          onLoginSuccess(data); // Call the callback here
+          onLoginSuccess(data);
 
         } else {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });

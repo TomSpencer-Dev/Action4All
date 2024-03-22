@@ -1,38 +1,34 @@
 import React from 'react';
-
 import '../styles/HomeRoute.scss';
-
 import Events from 'components/Events';
 import Login from 'components/Login';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 
-
 const HomeRoute = (props) => {
-  const isLoggedIn = Cookies.get('isLoggedIn') ;
-
+  const isLoggedIn = Cookies.get('isLoggedIn');
   return (
     <>
-        { isLoggedIn ? 
+      {isLoggedIn ?
         <div className="home-route">
-          <Events 
-          events = {props.events} 
-          addUserToEvent = {props.addUserToEvent} 
-          deleteEventFromUser = {props.deleteEventFromUser} 
-          loggedIn = {props.loggedIn} 
-          setLocation={props.setLocation} 
-          location = {props.location} 
-          deleteEvent = {props.deleteEvent}/>
+          <Events
+            events={props.events}
+            addUserToEvent={props.addUserToEvent}
+            deleteEventFromUser={props.deleteEventFromUser}
+            loggedIn={props.loggedIn}
+            setLocation={props.setLocation}
+            location={props.location}
+            deleteEvent={props.deleteEvent} />
         </div>
-       : 
+        :
         <div className="home-route">
-          <Login setLoggedIn = {props.setLoggedIn} loggedIn = {props.loggedIn } />
+          <Login setLoggedIn={props.setLoggedIn} loggedIn={props.loggedIn} />
         </div>
-        
-        }
-     </>
+
+      }
+    </>
   )
- };
+};
 
 export default HomeRoute;
 

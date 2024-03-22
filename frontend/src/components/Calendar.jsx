@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 
 function Calendar() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  /**
-   *  Sign in the user upon button click.
-   */
   function handleAuthClick() {
     tokenClient.callback = async (resp) => {
       if (resp.error !== undefined) {
@@ -16,16 +11,12 @@ function Calendar() {
       await listUpcomingEvents();
       await addEvent();
     };
-
     if (gapi.client.getToken() === null) {
-
       tokenClient.requestAccessToken({ prompt: 'consent' });
     } else {
-
       tokenClient.requestAccessToken({ prompt: '' });
     }
   }
-
   async function addEvent() {
     const event = {
       'summary': 'Google I/O 2015',
@@ -100,7 +91,6 @@ function Calendar() {
       setIsLoggedIn(false);
     }
   }
-
   return (
     <div>
       {

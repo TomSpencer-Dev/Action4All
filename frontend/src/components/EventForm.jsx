@@ -32,7 +32,7 @@ function EventForm() {
       if (response.ok) {
         window.location.href = '/';
       } else {
-        
+
         throw new Error(response.statusText);
       }
     } catch (error) {
@@ -40,19 +40,12 @@ function EventForm() {
     }
   };
 
-  // const handleInputChange = (e) => {
-  //   setEventFormData({
-  //     ...eventFormData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await createEvent(eventFormData);
-       setEventFormData({
+      setEventFormData({
         event_name: '',
         event_date: '',
         event_details: '',
@@ -63,10 +56,9 @@ function EventForm() {
         city: '',
         postal: ''
       });
-      
+
     } catch (error) {
       console.error('Error creating event:', error);
-      
     }
   };
 
@@ -83,7 +75,6 @@ function EventForm() {
             placeholder="Street Cleanup"
             value={eventFormData.event_name}
             onChange={event => updateField({ field: "event_name", value: event.target.value })} />
-          
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -111,8 +102,6 @@ function EventForm() {
             value={eventFormData.start_time}
             onChange={(event) => updateField({ field: "start_time", value: event.target.value })}
           />
-          
-
         </div>
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
@@ -125,7 +114,6 @@ function EventForm() {
             value={eventFormData.end_time}
             onChange={(event) => updateField({ field: "end_time", value: event.target.value })}
           />
-          
         </div>
 
         <div className="w-full md:w-1/2 px-3">
@@ -211,7 +199,6 @@ function EventForm() {
             </div>
           </div>
         </div>
-
         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
             Postal
@@ -224,7 +211,6 @@ function EventForm() {
             onChange={(event) => updateField({ field: "postal", value: event.target.value })} />
         </div>
       </div>
-
       <div className="flex items-center justify-between">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
