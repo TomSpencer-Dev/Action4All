@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 module.exports = db => {
-// Route to get all users
+  // Route to get all users
   router.get("/", (request, response) => {
 
     db.query(`
@@ -20,7 +20,7 @@ module.exports = db => {
         console.error("Error fetching users:", error);
         response.status(500).json({ error: "Internal Server Error" });
       });
-    })
+  })
 
   router.get("/:id", (request, response) => {
     const userId = request.params.id;
@@ -60,10 +60,10 @@ module.exports = db => {
           return res.json({});
         }
 
-       if (password === user.user_password) {
+        if (password === user.user_password) {
           return res.json(user);
         } else {
-          
+
           return res.json({});
         }
       })
@@ -71,12 +71,12 @@ module.exports = db => {
         console.error('Error querying database:', error);
         return res.status(500).json({ error: 'An error occurred during login.' });
       });
-});
-// Route for user registration
+  });
+  // Route for user registration
   router.post('/register', async (req, res) => {
     const userData = req.body;
-    console.log('Received registration data:', userData);
-   try {
+
+    try {
       const result = await db.query(
         'INSERT INTO users (firstname, lastname, email, user_password, city, volunteer_hours) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
         [
@@ -88,8 +88,6 @@ module.exports = db => {
           0,
         ]
       );
-
-      console.log('Registration successful. Result:', result.rows[0]);
 
       res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
