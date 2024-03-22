@@ -7,22 +7,21 @@ module.exports = db => {
     const userId = request.params.id;
     const location = request.query.location;
 
-    console.log(location);
     let WHERE_CLAUSE = "";
-    {(location === "/") ? (
-      WHERE_CLAUSE = `WHERE creator_id = ${userId}
+    {
+      (location === "/") ? (
+        WHERE_CLAUSE = `WHERE creator_id = ${userId}
       OR event.id IN (
         SELECT event_id
         FROM eventuser
         WHERE user_id = ${userId} );`)
-        : 
-(WHERE_CLAUSE = `WHERE creator_id != ${userId}
+      :
+      (WHERE_CLAUSE = `WHERE creator_id != ${userId}
       AND event.id  NOT IN (
         SELECT event_id
         FROM eventuser
         WHERE user_id = ${userId} );`)
     }
-console.log(WHERE_CLAUSE);
 
     const query = `
       SELECT 
@@ -60,8 +59,8 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-// creat event
- router.post("/", (request, response) => {
+  // POST create event
+  router.post("/", (request, response) => {
     const {
       event_name,
       event_details,
@@ -112,7 +111,8 @@ console.log(WHERE_CLAUSE);
         });
       });
   });
-  // PUT (update) an existing event
+
+  // PUT update event
   router.put("/:id", (request, response) => {
     const eventId = request.params.id;
     const {
@@ -167,37 +167,33 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-  
-
+  // DELETE event
   router.delete("/:id", async (request, response) => {
     const eventId = request.params.id;
-  
+
     try {
-      // First, delete related entries from eventuser table
       await db.query(`DELETE FROM eventuser WHERE event_id = $1;`, [eventId]);
-  
-      // Next, delete the event from the events table
       const eventDeletionResult = await db.query(`DELETE FROM events WHERE id = $1 RETURNING *;`, [eventId]);
-  
+
       if (eventDeletionResult.rows.length === 0) {
         response.status(404).json({ error: "Event not found" });
         return;
       }
-  
+
       response.json({ message: "Event and related entries deleted successfully" });
     } catch (error) {
       console.error("Error deleting event:", error);
       response.status(500).json({ error: "Internal Server Error", details: error.message });
     }
   });
-  
- 
-// routes/events.js
 
-router.get("/", (request, response) => {
-  const userId = request.query.userId; 
 
-  db.query(`
+  // routes/events.js
+
+  router.get("/", (request, response) => {
+    const userId = request.query.userId;
+
+    db.query(`
     SELECT 
       json_agg(
         json_build_object(
@@ -223,16 +219,16 @@ router.get("/", (request, response) => {
     JOIN users AS creator ON creator.id = event.creator_id
     WHERE event.creator_id = $1 OR event.user_id = $1; // Filter events created by or signed up by the user
   `, [userId])
-  .then(({ rows }) => {
-    response.json(rows[0].event_data);
-  })
-  .catch((error) => {
-    console.error("Error fetching events:", error);
-    response.status(500).json({ error: "Internal Server Error", details: error.message });
+      .then(({ rows }) => {
+        response.json(rows[0].event_data);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        response.status(500).json({ error: "Internal Server Error", details: error.message });
+      });
   });
-});
 
-module.exports = router;
+  module.exports = router;
 
   return router;
 };

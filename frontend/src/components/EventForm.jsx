@@ -16,7 +16,6 @@ function EventForm() {
     creator_id: '',
   });
 
-  //console.log("eventFormDate", eventFormData)
   function updateField({ field, value }) {
     setEventFormData({ ...eventFormData, [field]: value });
   }
@@ -31,9 +30,9 @@ function EventForm() {
       });
 
       if (response.ok) {
-        window.location.href = '/'; // Redirect to login page
+        window.location.href = '/';
       } else {
-        //console.log(response)
+
         throw new Error(response.statusText);
       }
     } catch (error) {
@@ -41,20 +40,11 @@ function EventForm() {
     }
   };
 
-  // const handleInputChange = (e) => {
-  //   setEventFormData({
-  //     ...eventFormData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await createEvent(eventFormData);
-      console.log('Event created successfully');
-      // Reset form data after successful submission
       setEventFormData({
         event_name: '',
         event_date: '',
@@ -66,10 +56,9 @@ function EventForm() {
         city: '',
         postal: ''
       });
-      // Redirect or show a success message
+
     } catch (error) {
       console.error('Error creating event:', error);
-      // Handle error (e.g., show an error message)
     }
   };
 
@@ -86,7 +75,6 @@ function EventForm() {
             placeholder="Street Cleanup"
             value={eventFormData.event_name}
             onChange={event => updateField({ field: "event_name", value: event.target.value })} />
-          <p className="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -114,8 +102,6 @@ function EventForm() {
             value={eventFormData.start_time}
             onChange={(event) => updateField({ field: "start_time", value: event.target.value })}
           />
-          <p className="text-red-500 text-xs italic">Please fill out this field.</p>
-
         </div>
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
@@ -128,7 +114,6 @@ function EventForm() {
             value={eventFormData.end_time}
             onChange={(event) => updateField({ field: "end_time", value: event.target.value })}
           />
-          <p className="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
 
         <div className="w-full md:w-1/2 px-3">
@@ -150,7 +135,6 @@ function EventForm() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-event_details">
             Event Details
           </label>
-          {/* <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="We are looking for someone to help pick up trash..." /> */}
           <textarea
             id="grid-event_details"
             rows="4"
@@ -215,7 +199,6 @@ function EventForm() {
             </div>
           </div>
         </div>
-
         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
             Postal
@@ -228,7 +211,6 @@ function EventForm() {
             onChange={(event) => updateField({ field: "postal", value: event.target.value })} />
         </div>
       </div>
-
       <div className="flex items-center justify-between">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"

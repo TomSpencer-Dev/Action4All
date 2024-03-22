@@ -12,15 +12,11 @@ function Navigation(props) {
   const isLoggedIn = Cookies.get('isLoggedIn');
 
   const handleLogout = () => {
-
     Cookies.remove('user_id');
     Cookies.remove('isLoggedIn');
-
-    props.logout(null, null);
+    props.setLoggedIn(null, null);
     handleSignoutClick();
   };
-
-
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-sky-400 p-6">

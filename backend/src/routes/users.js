@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 module.exports = db => {
-
+  // Route to get all users
   router.get("/", (request, response) => {
 
     db.query(`
@@ -20,11 +20,6 @@ module.exports = db => {
         console.error("Error fetching users:", error);
         response.status(500).json({ error: "Internal Server Error" });
       });
-    // } else{
-    //    response.status(401).json({ error: "Unauthorized" });
-
-    // }
-
   })
 
   router.get("/:id", (request, response) => {
@@ -65,29 +60,23 @@ module.exports = db => {
           return res.json({});
         }
 
-        // Check if password matches
         if (password === user.user_password) {
-          // Passwords match, proceed with login
-          //res.cookie("user_id", user.id);
           return res.json(user);
         } else {
-          // Passwords don't match, return empty response
+
           return res.json({});
         }
       })
       .catch(error => {
-        // Handle any errors that occur during the database query
         console.error('Error querying database:', error);
         return res.status(500).json({ error: 'An error occurred during login.' });
       });
-});
-
+  });
+  // Route for user registration
   router.post('/register', async (req, res) => {
     const userData = req.body;
-    console.log('Received registration data:', userData);
 
     try {
-      // Insert userData into the USERS table
       const result = await db.query(
         'INSERT INTO users (firstname, lastname, email, user_password, city, volunteer_hours) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
         [
@@ -100,15 +89,11 @@ module.exports = db => {
         ]
       );
 
-      console.log('Registration successful. Result:', result.rows[0]);
-
       res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
       console.error('Error during user registration:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-
-
-  return router;
+return router;
 };
