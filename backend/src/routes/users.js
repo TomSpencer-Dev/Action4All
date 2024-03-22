@@ -85,7 +85,7 @@ module.exports = db => {
           userData.email,
           userData.password,
           userData.city,
-          0,
+          0
         ]
       );
 

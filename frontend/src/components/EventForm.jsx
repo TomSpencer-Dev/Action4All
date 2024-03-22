@@ -30,6 +30,7 @@ function EventForm() {
       let timeString;
       console.log(value)
       timeString = value;
+      console.log("Line 33: ",timeString)
 
       setEventFormData({ ...eventFormData, [field]: timeString });
     } else {
