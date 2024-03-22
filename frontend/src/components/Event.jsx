@@ -23,6 +23,7 @@ function MyEvents(props) {
   setClick(!isClick)
     props.addUserToEvent(userId, eventId);
     handleAuthClick(props);
+    
   };
 
   const handleDeleteEventClick = () => {

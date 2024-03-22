@@ -29,15 +29,18 @@ const useApplicationData = () => {
 
   useEffect(() => {
     if (state.loggedIn.id) {
-      fetch(`http://localhost:8001/api/events/${state.loggedIn.id}?location=${state.location}`, {
+      fetch(`/api/events/${state.loggedIn.id}?location=${state.location}`, {
       })
         .then(res => res.json())
         .then(data => {
           dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
         });
     }
-  }, [state.loggedIn, state.location, state.eventsData]);
+  }, [state.location, state.loggedIn]);
 
+  // const loadEvents = function => () {
+
+  //   }
 
 
   function reducer(state, action) {
@@ -65,6 +68,7 @@ const useApplicationData = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
+          loadEvents();
           alert("Signed up for event successfully");
         } else {
           throw new Error(data.message);
@@ -100,6 +104,8 @@ const useApplicationData = () => {
         // Log the response message
         console.log(data);
         // Display message to the user
+        const newEvents = state.eventsData.filter(event => event.id != eventId);
+        dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: newEvents });
         alert("Event deleted succssfully!");
       })
       .catch(error => {
@@ -107,6 +113,16 @@ const useApplicationData = () => {
         alert('Failed to delete event. Please try again.');
       });
   }
+
+  function loadEvents() {
+    fetch(`/api/events/${state.loggedIn.id}?location=${state.location}`, {
+    })
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: data });
+      });
+  }
+
 
   function deleteEventFromUser(userId, eventId) {
     fetch(`/api/eventuser/${userId}/${eventId}`, {
@@ -118,6 +134,7 @@ const useApplicationData = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
+          loadEvents();
           alert("Withdrawal from event successful!");
         } else {
           throw new Error(data.message);
@@ -132,7 +149,7 @@ const useApplicationData = () => {
   }
 
   const setLoggedIn = function(email, password, onLoginSuccess) {
-    fetch("http://localhost:8001/api/users/login", {
+    fetch("/api/users/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -154,7 +171,7 @@ const useApplicationData = () => {
       })
       .catch(error => {
         console.error('Error fetching user:', error);
-        
+
       });
   };
 
