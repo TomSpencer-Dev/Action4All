@@ -60,11 +60,8 @@ console.log(WHERE_CLAUSE);
       });
   });
 
-
-
 // creat event
-
-  router.post("/", (request, response) => {
+ router.post("/", (request, response) => {
     const {
       event_name,
       event_details,
