@@ -48,9 +48,9 @@ function EventForm() {
       });
 
       if (response.ok) {
-        window.location.href = '/'; // Redirect to login page
+        window.location.href = '/';
       } else {
-        //console.log(response)
+
         throw new Error(response.statusText);
       }
     } catch (error) {
@@ -76,10 +76,9 @@ function EventForm() {
         city: '',
         postal: ''
       });
-      // Redirect or show a success message
+
     } catch (error) {
       console.error('Error creating event:', error);
-      // Handle error (e.g., show an error message)
     }
   };
 
