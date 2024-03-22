@@ -2,6 +2,7 @@ import { toHaveStyle } from '@testing-library/jest-dom/matchers';
 import { useReducer, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 
@@ -69,14 +70,24 @@ const useApplicationData = () => {
       .then(data => {
         if (data.success) {
           loadEvents();
-          alert("Signed up for event successfully");
+          toast("❤️ Signed up for event successfully!", {
+            position: "top-center",
+            hideProgressBar: true,
+            autoClose: 1000,
+            closeOnClick: true
+          });
         } else {
           throw new Error(data.message);
         }
       })
       .catch(error => {
         console.error('Error adding user to event:', error);
-        alert('Failed to add user to event. Please try again.');
+        toast.error("Failed to add user to event. Please try again.", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 1000,
+          closeOnClick: true
+        });
       });
   }
 
@@ -106,11 +117,21 @@ const useApplicationData = () => {
         // Display message to the user
         const newEvents = state.eventsData.filter(event => event.id != eventId);
         dispatch({ type: ACTIONS.SET_EVENTS_DATA, payload: newEvents });
-        alert("Event deleted succssfully!");
+        toast.success("Event deleted successfully!", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 1000,
+          closeOnClick: true
+        });
       })
       .catch(error => {
         console.error('Error deleting event:', error);
-        alert('Failed to delete event. Please try again.');
+        toast.error("Failed to delete event. Please tr again.", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 1000,
+          closeOnClick: true
+        });
       });
   }
 
@@ -135,16 +156,24 @@ const useApplicationData = () => {
       .then(data => {
         if (data.success) {
           loadEvents();
-          alert("Withdrawal from event successful!");
+          toast.success("Withdrew from event successfully!", {
+            position: "top-center",
+            hideProgressBar: true,
+            autoClose: 1000,
+            closeOnClick: true
+          });
         } else {
           throw new Error(data.message);
         }
       })
       .catch(error => {
         console.error('Error withdrawing from event:', error);
-
-        alert('Failed to withdraw from event. Please try again.');
-
+        toast.error("Failed to withdraw from event. Please try again.", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 1000,
+          closeOnClick: true
+        });
       });
   }
 
@@ -186,7 +215,12 @@ const useApplicationData = () => {
         } else {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
           console.error('Invalid email or password');
-          alert("Invalid email or password");
+          toast.error("Invalid email or password", {
+            position: "top-center",
+            hideProgressBar: true,
+            autoClose: 1000,
+            closeOnClick: true
+          });
         }
       })
       .catch(error => {
