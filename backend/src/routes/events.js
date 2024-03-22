@@ -88,7 +88,7 @@ module.exports = db => {
   //     });
   // });
 
-  
+
 
   router.post("/", (request, response) => {
     const {
@@ -111,19 +111,17 @@ module.exports = db => {
         event_details,
         start_time,
         end_time,
-        event_hours,
         event_address,
         city,
         event_date,
         creator_id
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;
     `,
       [
         event_name,
         event_details,
         start_time,
         end_time,
-        event_hours,
         event_address,
         city,
         event_date,
