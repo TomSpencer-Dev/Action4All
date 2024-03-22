@@ -12,11 +12,9 @@ function Navigation(props) {
   const isLoggedIn = Cookies.get('isLoggedIn');
 
   const handleLogout = () => {
-
     Cookies.remove('user_id');
     Cookies.remove('isLoggedIn');
-
-    props.logout(null, null);
+    props.setLoggedIn(null, null);
     handleSignoutClick();
   };
 
