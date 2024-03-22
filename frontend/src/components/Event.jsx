@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { handleAuthClick } from "../helper/calendar";
 import '../styles/Event.scss';
+import { toast } from 'react-toastify';
+
+
+
+
 
 function formatTime(timeStr) {
   const [hours, minutes] = timeStr.split(':');
@@ -17,17 +22,20 @@ function formatDate(dateStr) {
 }
 
 function MyEvents(props) {
+ 
   const handleAddEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
-    setClick(!isClick)
+    setClick(!isClick);
     props.addUserToEvent(userId, eventId);
     handleAuthClick(props);
+
   };
 
   const handleDeleteEventClick = () => {
     const eventId = props.data.id;
     props.deleteEvent(eventId);
+// toast.success("Event deleted successfully!");
   };
 
   const handleWithdrawEventClick = () => {

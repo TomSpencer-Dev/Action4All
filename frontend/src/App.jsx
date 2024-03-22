@@ -9,6 +9,8 @@ import EventForm from 'components/EventForm';
 import Opportunities from 'components/Opportunities'
 import Calendar from 'components/Calendar';
 import Cookies from 'js-cookie';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 const {
@@ -27,6 +29,7 @@ const {
           <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
+      <ToastContainer/>
     </div>
   );
 };
