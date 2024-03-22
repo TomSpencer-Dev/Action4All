@@ -148,6 +148,25 @@ const useApplicationData = () => {
       });
   }
 
+  const logout = function() {
+    fetch("/api/users/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("User data from server:", data);
+        dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
+      })
+      .catch(error => {
+        console.error('Error fetching user:', error);
+
+      });
+  };
+
+
   const setLoggedIn = function(email, password, onLoginSuccess) {
     fetch("/api/users/login", {
       method: 'POST',
@@ -167,6 +186,7 @@ const useApplicationData = () => {
         } else {
           dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
           console.error('Invalid email or password');
+          alert("Invalid email or password");
         }
       })
       .catch(error => {
@@ -200,7 +220,8 @@ const useApplicationData = () => {
     addUserToEvent,
     deleteEventFromUser,
     setLocation,
-    deleteEvent
+    deleteEvent,
+    logout
   };
 };
 

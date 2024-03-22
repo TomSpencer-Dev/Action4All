@@ -12,13 +12,13 @@ import Cookies from 'js-cookie';
 
 const App = () => {
 const {
-   state, deleteEvent,setLocation, setLoggedIn, addUserToEvent, deleteEventFromUser } = useApplicationData();
+   state, deleteEvent,setLocation, logout, setLoggedIn, addUserToEvent, deleteEventFromUser } = useApplicationData();
    const isLoggedIn = Cookies.get('isLoggedIn') ;
 
   return (
     <div className="App">
       <Router>
-        <Navigation setLoggedIn={setLoggedIn} loggedIn={state.loggedIn} setLocation = {setLocation} />
+        <Navigation setLoggedIn={setLoggedIn} loggedIn={state.loggedIn} setLocation = {setLocation} logout = {logout}/>
          <Routes>
           <Route path="*" element={<h4>404 Page not Found</h4>} />
           <Route path="/" element={<HomeRoute events={state.eventsData} setLoggedIn = {setLoggedIn} loggedIn = {state.loggedIn} addUserToEvent = {addUserToEvent} deleteEventFromUser={deleteEventFromUser} setLocation = {setLocation} location = {state.location} deleteEvent = {deleteEvent}/>} />
