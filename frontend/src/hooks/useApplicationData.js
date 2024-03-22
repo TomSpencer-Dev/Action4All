@@ -171,7 +171,10 @@ const useApplicationData = () => {
         });
     }
   };
-
+  const logout = () => {
+    dispatch({ type: ACTIONS.SET_LOGGED_IN, payload: {} });
+    
+  };
   return {
     state,
     setLoggedIn,
