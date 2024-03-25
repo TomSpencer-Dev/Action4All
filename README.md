@@ -1,5 +1,5 @@
 # Action4All
- The Action4All project is a full-stack web single-page application built using Node.js and Express.js. It serves as a volunteer app where users can create events and sign up to volunteer at events.
+ The Action4All project is a full-stack web application built using Node.js and Express.js for the backend, and React for the frontend. It serves as a volunteer platform where users can create events and sign up to volunteer at these events.
  
 # Action4All
 !["Screenshot of Home Page"](https://github.com/TomSpencer-Dev/action4all/blob/main/backend/photos/action4all_homepage.png)
@@ -28,7 +28,8 @@ npm start
 
 - Node.js
 - Express.js
+- React
 - Tailwind CSS
-- Calander API
+- Calendar API
 - cookie-js
 
