@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 const now = moment();
 
-function EventForm() {
+function EventForm(props) {
     const [eventFormData, setEventFormData] = useState({
         event_name: '',
         event_date: new Date(),
@@ -69,8 +69,9 @@ function EventForm() {
     }
 
     async function createEvent(eventData) {
+      const userId = props.loggedIn.id
         try {
-            const response = await fetch('http://localhost:8001/api/events', {
+            const response = await fetch(`/api/events/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

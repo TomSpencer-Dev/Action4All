@@ -60,7 +60,8 @@ module.exports = db => {
   });
 
   // POST create event
-  router.post("/", (request, response) => {
+  router.post("/:userId", (request, response) => {
+    const { userId } = request.params;
     const {
       event_name,
       event_details,
@@ -95,7 +96,7 @@ module.exports = db => {
         event_address,
         city,
         event_date,
-        1
+        userId
       ]
     )
       .then(({ rows }) => {
