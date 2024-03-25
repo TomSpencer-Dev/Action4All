@@ -1,3 +1,4 @@
+//Routes for users table
 const router = require("express").Router();
 
 module.exports = db => {
@@ -22,6 +23,7 @@ module.exports = db => {
       });
   })
 
+  //Get users by id
   router.get("/:id", (request, response) => {
     const userId = request.params.id;
 
@@ -48,6 +50,7 @@ module.exports = db => {
       });
   });
 
+  //Post user with matching email and password
   router.post("/login", (req, res) => {
     console.log(req.body);
     const email = req.body.email;

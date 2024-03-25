@@ -1,4 +1,4 @@
-
+//Routes for events
 const router = require("express").Router();
 
 module.exports = db => {

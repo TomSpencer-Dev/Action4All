@@ -1,3 +1,4 @@
+//Component containing a beating heart animation
 import React from 'react';
 
 const BeatingHeartIcon = () => {

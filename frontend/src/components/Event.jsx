@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 
 
-
+//Fromat time from 4pm to 24hr clock format
 function formatTime(timeStr) {
   const [hours, minutes] = timeStr.split(':');
   let hourNum = parseInt(hours, 10);
@@ -15,6 +15,7 @@ function formatTime(timeStr) {
   return `${hourNum}:${minutes}${period}`;
 }
 
+//format date to store in DB
 function formatDate(dateStr) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [year, month, day] = dateStr.split('-');
@@ -23,6 +24,7 @@ function formatDate(dateStr) {
 
 function MyEvents(props) {
  
+  //When user signs up for an event with the sign up button
   const handleAddEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;
@@ -32,12 +34,14 @@ function MyEvents(props) {
 
   };
 
+  //When a user deletes an event they created with the delete button
   const handleDeleteEventClick = () => {
     const eventId = props.data.id;
     props.deleteEvent(eventId);
 // toast.success("Event deleted successfully!");
   };
 
+  //When a user withdraws from an event they signed up for by pressing withdraw button
   const handleWithdrawEventClick = () => {
     const userId = props.loggedIn.id;
     const eventId = props.data.id;

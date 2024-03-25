@@ -1,3 +1,4 @@
+//routes for eventuser table
 const router = require("express").Router();
 
 module.exports = db => {
@@ -16,7 +17,7 @@ module.exports = db => {
     }
   });
 
-  // DELETE an event from userevent
+  // DELETE an event from eventuser
   router.delete("/:userId/:eventId", async (req, res) => {
     const { userId, eventId } = req.params;
     try {
