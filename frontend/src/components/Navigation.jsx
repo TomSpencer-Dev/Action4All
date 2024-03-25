@@ -19,7 +19,7 @@ function Navigation(props) {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-sky-400 p-6">
+    <nav className="flex fixed items-center w-full justify-between flex-wrap bg-sky-400 p-6 z-10">
 
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <Link to="/" >

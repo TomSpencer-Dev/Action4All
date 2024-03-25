@@ -21,7 +21,7 @@ function Opportunities(props) {
       />;
     }) : <div></div>
   return (
-    <ul role="list" className="divide-y divide-gray-100 home-route">
+    <ul role="list" className="divide-y divide-gray-100 home-route pt-40">
       {eventItems}
     </ul>
   );

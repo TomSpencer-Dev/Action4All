@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const now = moment();
 
@@ -96,7 +97,12 @@ function EventForm() {
                 start_time: eventFormData.start_time.format('HH:mm:ss'),
                 end_time: eventFormData.end_time.format('HH:mm:ss'),
             });
-
+            toast.success("Event created successfully!", {
+            position: "top-center",
+            hideProgressBar: true,
+            autoClose: 1000,
+            closeOnClick: true
+          });
             console.log('Event created successfully');
 
             // Reset form data after successful submission
@@ -118,7 +124,7 @@ function EventForm() {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center pt-40">
             <form className="w-full max-w-lg" onSubmit={handleSubmit}>
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
