@@ -270,11 +270,11 @@ function EventForm(props) {
 
         <div className="flex items-center justify-center mt-4">
           <button
-            className="relative text-sm font-semibold w-full">
+            className="relative text-sm font-semibold w-full" type="submit"
+              onClick={handleSubmit}>
             <div className="absolute inset-x-0 h-full -bottom-2 bg-gray-300 border border-gray-300 mr-4 w-full justify-center rounded-md"></div>
             <div className="relative flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition transform active:translate-y-2 mr-4 "
-              type="submit"
-              onClick={handleSubmit}
+              
             >Submit</div>
           </button>
           {/* <button
