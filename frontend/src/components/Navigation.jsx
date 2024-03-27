@@ -21,7 +21,7 @@ function Navigation(props) {
   return (
     <nav className="flex fixed items-center w-full justify-between flex-wrap bg-sky-400 p-6 z-10">
 
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
+      <div className="flex items-center flex-shrink-0 text-white mr-6 animate__animated animate__bounceInDown animate__delay-1s">
         <Link to="/" >
           <img className="png" src={icon} alt="icon" title="icon" />
         </Link>
@@ -34,14 +34,14 @@ function Navigation(props) {
           </Link> */}
           <Link
             to="/"
-            className="relative text-sm lg:inline-block">
+            className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-2s">
             <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
             <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Home</div>
           </Link>
           <>
             <Link
               to="/volunteer"
-              className="relative text-sm lg:inline-block">
+              className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-3s">
               <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Volunteer</div>
             </Link>
@@ -53,7 +53,7 @@ function Navigation(props) {
             </Link> */}
             <Link
               to="/create"
-              className="relative text-sm lg:inline-block">
+              className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-4s">
               <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Create Event</div>
             </Link>
@@ -90,13 +90,13 @@ function Navigation(props) {
             // >
             //   Register
             // </Link>
-
+            <div className="animate__animated animate__bounceInDown animate__delay-5s">
             <Link
               to="/register"
               className="relative text-sm">
               <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded"></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white hover:bg-sky-300">Register</div>
-            </Link>
+            </Link></div>
           )}
         </div>
       </div>
