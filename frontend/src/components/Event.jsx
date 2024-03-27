@@ -65,11 +65,11 @@ function MyEvents(props) {
 
           {props.data.creator.id === props.loggedIn.id ? (
             <button
-              className="relative text-black-700 ">
+              className="relative text-black-700 " type="button"
+                onClick={handleDeleteEventClick}>
               <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
               <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
-                type="button"
-                onClick={handleDeleteEventClick}
+                
               >Delete</div>
             </button>
 
@@ -80,11 +80,11 @@ function MyEvents(props) {
             props.location === "/volunteer" ? (
               <>
                 <button
-                  className="relative text-black-700 ">
+                  className="relative text-black-700" type="button"
+                    onClick={handleAddEventClick}>
                   <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
                   <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
-                    type="button"
-                    onClick={handleAddEventClick}
+                    
                   >Sign Up</div>
                 </button>
                 {/* <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
@@ -94,11 +94,11 @@ function MyEvents(props) {
               </>
             ) : (
               <button
-                className="relative text-black-700 ">
+                className="relative text-black-700" type="button"
+                  onClick={handleWithdrawEventClick}>
                 <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
                 <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
-                  type="button"
-                  onClick={handleWithdrawEventClick}
+                  
                 >Withdraw</div>
               </button>
               // <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
