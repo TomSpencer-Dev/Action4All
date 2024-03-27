@@ -4,7 +4,8 @@ import Events from 'components/Events';
 import Login from 'components/Login';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
-import backgroundVideo from '../assets/backgroundVideo.mp4';
+import backgroundVideo from '../assets/backgroundVideo2.mp4';
+
 
 const HomeRoute = (props) => {
   const isLoggedIn = Cookies.get('isLoggedIn');

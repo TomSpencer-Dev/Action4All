@@ -19,7 +19,7 @@ function Navigation(props) {
   };
 
   return (
-    <nav className="flex fixed items-center w-full justify-between flex-wrap bg-sky-400 p-6 z-10">
+    <nav className={`flex fixed items-center w-full justify-between flex-wrap p-6 z-10 ${isLoggedIn ? 'bg-sky-400' : 'bg-transparent'}`}>
 
       <div className="flex items-center flex-shrink-0 text-white mr-6 animate__animated animate__bounceInDown animate__delay-1s">
         <Link to="/" >
@@ -35,14 +35,14 @@ function Navigation(props) {
           <Link
             to="/"
             className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-2s">
-            <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+            <div className={`absolute inset-x-0 h-full -bottom-2 border border-sky-500 rounded mr-4 ${isLoggedIn ? 'bg-sky-500' : 'bg-sky-300'}`}></div>
             <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Home</div>
           </Link>
           <>
             <Link
               to="/volunteer"
               className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-3s">
-              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+              <div className={`absolute inset-x-0 h-full -bottom-2 border border-sky-500 rounded mr-4 ${isLoggedIn ? 'bg-sky-500' : 'bg-sky-300'}`}></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Volunteer</div>
             </Link>
             {/* <Link to="/volunteer" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
@@ -54,7 +54,7 @@ function Navigation(props) {
             <Link
               to="/create"
               className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-4s">
-              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+              <div className={`absolute inset-x-0 h-full -bottom-2 border border-sky-500 rounded mr-4 ${isLoggedIn ? 'bg-sky-500' : 'bg-sky-300'}`}></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Create Event</div>
             </Link>
           </>
@@ -67,13 +67,13 @@ function Navigation(props) {
                 <BeatingHeartIcon />
                 <span className="text-white mr-3">{userEmail}</span>
               </div>
-            <button
-              className="relative text-sm lg:inline-block">
-              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
-              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300"
-                    type="button"
-                    onClick={handleLogout}>Logout</div>
-            </button>
+              <button
+                className="relative text-sm lg:inline-block" type="button"
+                onClick={handleLogout}>
+                <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+                <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300"
+                >Logout</div>
+              </button>
               {/* <button
                 className="bg-sky-400 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
                 type="button"
@@ -91,12 +91,12 @@ function Navigation(props) {
             //   Register
             // </Link>
             <div className="animate__animated animate__bounceInDown animate__delay-5s">
-            <Link
-              to="/register"
-              className="relative text-sm">
-              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded"></div>
-              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white hover:bg-sky-300">Register</div>
-            </Link></div>
+              <Link
+                to="/register"
+                className="relative text-sm">
+                <div className={`absolute inset-x-0 h-full -bottom-2 border border-sky-500 rounded ${isLoggedIn ? 'bg-sky-500' : 'bg-sky-300'}`}></div>
+                <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white hover:bg-sky-300">Register</div>
+              </Link></div>
           )}
         </div>
       </div>
