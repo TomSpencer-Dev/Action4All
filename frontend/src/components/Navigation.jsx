@@ -29,15 +29,33 @@ function Navigation(props) {
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
-          <Link to="/" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
+          {/* <Link to="/" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
             Home
+          </Link> */}
+          <Link
+            to="/"
+            className="relative text-sm lg:inline-block">
+            <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+            <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Home</div>
           </Link>
           <>
-            <Link to="/volunteer" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
-              Volunteer
+            <Link
+              to="/volunteer"
+              className="relative text-sm lg:inline-block">
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Volunteer</div>
             </Link>
-            <Link to="/create" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100">
+            {/* <Link to="/volunteer" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
+              Volunteer
+            </Link> */}
+            {/* <Link to="/create" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100">
               Create Event
+            </Link> */}
+            <Link
+              to="/create"
+              className="relative text-sm lg:inline-block">
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Create Event</div>
             </Link>
           </>
         </div>
@@ -49,21 +67,35 @@ function Navigation(props) {
                 <BeatingHeartIcon />
                 <span className="text-white mr-3">{userEmail}</span>
               </div>
-              <button
+            <button
+              className="relative text-sm lg:inline-block">
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded mr-4"></div>
+              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300"
+                    type="button"
+                    onClick={handleLogout}>Logout</div>
+            </button>
+              {/* <button
                 className="bg-sky-400 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
                 type="button"
                 onClick={handleLogout}
               >
                 Logout
-              </button>
+              </button> */}
 
             </div>
           ) : (
+            // <Link
+            //   to="/register"
+            //   className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
+            // >
+            //   Register
+            // </Link>
+
             <Link
               to="/register"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-sky-500 hover:bg-white mt-4 lg:mt-0"
-            >
-              Register
+              className="relative text-sm">
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-sky-500 border border-sky-500 rounded"></div>
+              <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white hover:bg-sky-300">Register</div>
             </Link>
           )}
         </div>

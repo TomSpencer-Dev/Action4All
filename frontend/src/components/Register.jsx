@@ -48,7 +48,7 @@ function Register() {
   };
 
   return (
-    <div className="flex pt-40 min-h-full flex-col justify-center px-6 py-12 lg:px-8 animate__animated animate__bounce">
+    <div className="flex pt-40 min-h-full flex-col justify-center px-6 py-12 lg:px-8 animate__animated animate__headShake">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register as a user</h2>
       </div>
@@ -101,11 +101,20 @@ function Register() {
                 onChange={handleChange} />
             </div>
           </div>
-          <button className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+
+<button
+              className="relative text-sm font-semibold w-full">
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-gray-300 border border-gray-300 mr-4 w-full justify-center rounded-md"></div>
+              <div className="relative flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition transform active:translate-y-2 mr-4 "
+                type="button"
+              onClick={handleSubmit}
+              >Submit</div>
+            </button>
+          {/* <button className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             type="button"
             onClick={handleSubmit}>
             Submit
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

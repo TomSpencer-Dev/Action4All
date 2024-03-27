@@ -23,7 +23,7 @@ function formatDate(dateStr) {
 }
 
 function MyEvents(props) {
- 
+
   //When user signs up for an event with the sign up button
   const handleAddEventClick = () => {
     const userId = props.loggedIn.id;
@@ -38,7 +38,7 @@ function MyEvents(props) {
   const handleDeleteEventClick = () => {
     const eventId = props.data.id;
     props.deleteEvent(eventId);
-// toast.success("Event deleted successfully!");
+    // toast.success("Event deleted successfully!");
   };
 
   //When a user withdraws from an event they signed up for by pressing withdraw button
@@ -64,21 +64,46 @@ function MyEvents(props) {
         <div className="flex items-center">
 
           {props.data.creator.id === props.loggedIn.id ? (
-            <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>
-              Delete Event
+            <button
+              className="relative text-black-700 ">
+              <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
+              <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
+                type="button"
+                onClick={handleDeleteEventClick}
+              >Delete</div>
             </button>
+
+            // <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleDeleteEventClick}>
+            //   Delete Event
+            // </button>
           ) : (
             props.location === "/volunteer" ? (
               <>
-                <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
+                <button
+                  className="relative text-black-700 ">
+                  <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
+                  <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
+                    type="button"
+                    onClick={handleAddEventClick}
+                  >Sign Up</div>
+                </button>
+                {/* <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleAddEventClick}>
                   Sign Up
 
-                </button>
+                </button> */}
               </>
             ) : (
-              <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
-                Withdraw
+              <button
+                className="relative text-black-700 ">
+                <div className="absolute min-w-40 inset-x-0 h-full -bottom-2 bg-gray-200 border border-gray-100 rounded-full mr-4"></div>
+                <div className="relative min-w-40 font-semibold bg-white border rounded-full px-4 py-2 transition transform active:translate-y-2 mr-4 hover:bg-gray-50 hover:text-gray-500"
+                  type="button"
+                  onClick={handleWithdrawEventClick}
+                >Withdraw</div>
               </button>
+              // <button className="bg-transparent min-w-40 hover:bg-gray-100 text-black-700 font-semibold hover:text-gray-500 py-2 px-4 border border-black-500 hover:border-transparent rounded-full" type="button" onClick={handleWithdrawEventClick}>
+              //   Withdraw
+              // </button>
             )
           )}
 
@@ -102,17 +127,42 @@ function MyEvents(props) {
         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.event_address} </p>
           <p className="mt-1 text-xs leading-5 text-gray-900">{props.data.city} </p>
-          {props.location === "/volunteer" ? <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white" >
-            Available
-          </button> :
+          {props.location === "/volunteer" ?
+            <button
+              className="relative text-sm cursor-default">
+              <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+              <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
+                Available</div>
+
+            </button>
+
+            // <button className=" text-sm min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-300 text-white" >
+            //   Available
+            // </button>
+            :
             props.data.creator.id === props.loggedIn.id ? (
-              <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
-                My Event
+              <button
+                className="relative text-sm cursor-default">
+                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+                <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
+                  My Event</div>
+
               </button>
+              // <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
+              //   My Event
+              // </button>
             ) : (
-              <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white">
-                Volunteering
+
+              <button
+                className="relative text-sm cursor-default">
+                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+                <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
+                  Volunteering</div>
+
               </button>
+              // <button className="min-w-40 text-sm mt-1 px-2 py-1 rounded-full bg-sky-300 text-white">
+              //   Volunteering
+              // </button>
             )
           }
         </div>
