@@ -130,7 +130,7 @@ function MyEvents(props) {
           {props.location === "/volunteer" ?
             <button
               className="relative text-sm cursor-default">
-              <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+              <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-200"></div>
               <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
                 Available</div>
 
@@ -143,7 +143,7 @@ function MyEvents(props) {
             props.data.creator.id === props.loggedIn.id ? (
               <button
                 className="relative text-sm cursor-default">
-                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-gray-200"></div>
                 <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
                   My Event</div>
 
@@ -155,7 +155,7 @@ function MyEvents(props) {
 
               <button
                 className="relative text-sm cursor-default">
-                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-500"></div>
+                <div className="absolute inset-x-0 h-full -bottom-2 min-w-40 mt-1 px-2 py-1 rounded-full bg-gray-200"></div>
                 <div className="relative min-w-40 mt-1 px-2 py-1 rounded-full bg-sky-400 text-white">
                   Volunteering</div>
 

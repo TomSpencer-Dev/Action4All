@@ -35,14 +35,14 @@ function Navigation(props) {
           <Link
             to="/"
             className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-2s">
-            <div className={`absolute inset-x-0 h-full -bottom-2 border rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 ' : 'bg-sky-300 border-sky-300'}`}></div>
+            <div className={`absolute inset-x-0 h-full -bottom-2  rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 border ' : 'bg-gray-200 bg-opacity-15'}`}></div>
             <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Home</div>
           </Link>
           <>
             <Link
               to="/volunteer"
               className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-3s">
-              <div className={`absolute inset-x-0 h-full -bottom-2 border rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 ' : 'bg-sky-300 border-sky-300'}`}></div>
+              <div className={`absolute inset-x-0 h-full -bottom-2  rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 border ' : 'bg-gray-200 bg-opacity-15'}`}></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Volunteer</div>
             </Link>
             {/* <Link to="/volunteer" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-sky-100 mr-4">
@@ -54,7 +54,7 @@ function Navigation(props) {
             <Link
               to="/create"
               className="relative text-sm lg:inline-block animate__animated animate__bounceInDown animate__delay-4s">
-              <div className={`absolute inset-x-0 h-full -bottom-2 border rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 ' : 'bg-sky-300 border-sky-300'}`}></div>
+              <div className={`absolute inset-x-0 h-full -bottom-2 rounded mr-4 ${isLoggedIn ? 'bg-sky-500 border-sky-500 border ' : 'bg-gray-200 bg-opacity-15'}`}></div>
               <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white mr-4 hover:bg-sky-300">Create Event</div>
             </Link>
           </>
@@ -94,7 +94,7 @@ function Navigation(props) {
               <Link
                 to="/register"
                 className="relative text-sm">
-                <div className={`absolute inset-x-0 h-full -bottom-2 border rounded ${isLoggedIn ? 'bg-sky-500 border-sky-500 ' : 'bg-sky-300 border-sky-300'}`}></div>
+                <div className={`absolute inset-x-0 h-full -bottom-2 rounded ${isLoggedIn ? 'bg-sky-500 border-sky-500 border ' : 'bg-gray-200 bg-opacity-15'}`}></div>
                 <div className="relative bg-sky-400 border rounded px-4 py-2 transition transform active:translate-y-2 text-white hover:bg-sky-300">Register</div>
               </Link></div>
           )}

@@ -55,7 +55,7 @@ function Login({ setLoggedIn, loggedIn }) {
           <div>
             <button className="relative text-sm font-semibold w-full" type="button"
               onClick={handleLogin}>
-              <div className="absolute inset-x-0 h-full -bottom-2 bg-gray-300 border border-gray-200 mr-4 w-full justify-center rounded-md"></div>
+              <div className="absolute inset-x-0 h-full -bottom-2 bg-gray-300 mr-4 w-full justify-center rounded-md bg-opacity-50"></div>
               <div className="relative flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition transform active:translate-y-2 mr-4 "
               >Sign In</div>
             </button>
